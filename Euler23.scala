@@ -2,7 +2,7 @@ import scala.collection.mutable.Set;
 
 object Euler23 extends Application {
   def sum (values :List[Int]) = {
-    values.foldLeft(0)((b, a) => (b + a))
+    values.foldLeft(0)(_+_)
   }
 
   def divisors (x :Int) :List[Int] = {

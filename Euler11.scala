@@ -30,18 +30,10 @@ object Euler11 extends Application {
     List.range(0, veclen).map((idx) => data((y + dy*idx) * side + (x + dx*idx)));
   }
 
-  def product (list :List[Int]) :Int = {
-    list.foldRight(1)((a, b) => (a * b));
-  }
-
-  def maxElem (list :List[Int]) :Int = {
-    list.foldRight(0)((a :Int, b :Int) => Math.max(a, b));
-  }
-
-  println(maxElem(for {
+  println((for {
     x <- List.range(0, side)
     y <- List.range(0, side)
     delta <- List(Array(1, 0), Array(0, 1), Array(1, 1), Array(-1, 1))
     if inBounds(x + delta(0)*(veclen-1), y + delta(1)*(veclen-1))
-  } yield product(vector(x, y, delta(0), delta(1)))));
+  } yield vector(x, y, delta(0), delta(1)).foldRight(1)(_*_)).foldRight(0)(Math.max));
 }
