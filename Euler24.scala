@@ -8,7 +8,7 @@ object Euler24 extends Application {
     val nfact = fact(nums.length-1)
     val idx = Math.floor(target / nfact).intValue();
     val digit = nums(idx);
-    return digit.toString() + nthperm(target - nfact*idx, nums.filter((a) => (a != digit)));
+    return digit.toString() + nthperm(target - nfact*idx, nums.filter(digit.!=));
   }
 
   println(nthperm(1000000, List.range(0, 10)));
