@@ -1,16 +1,8 @@
 object Euler5 extends Application {
-  def divisByOneToTwenty (value :Int) :Boolean = {
-    for (i <- List.range(2, 21).reverse) {
-      if (value % i != 0) {
-        return false;
-      }
-    }
-    return true;
+  val divisors = List(20, 19, 18, 17, 16, 15, 14, 13, 12, 11);
+  def check (value :Int) :Int = {
+    if (divisors.exists((a) => (value % a != 0))) return check(20+value)
+    else return value
   }
-
-  var value :Int = 20;
-  while (!divisByOneToTwenty(value)) {
-    value = value + 20;
-  }
-  println(value);
+  println(check(20));
 }
