@@ -21,19 +21,17 @@ object Euler11 extends Application {
                     1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48);
   val side = Math.sqrt(data.length);
   val veclen = 4;
-
   def inBounds (ex :Int, ey :Int) :Boolean = {
     ex >= 0 && ex < side && ey >= 0 && ey < side
   } 
-
-  def vector (x :Int, y :Int, dx :Int, dy :Int) :List[Int] = {
-    List.range(0, veclen).map((idx) => data((y + dy*idx) * side + (x + dx*idx)));
+  def vecprod (x :Int, y :Int, dx :Int, dy :Int) :Int = {
+    List.range(0, veclen).map((idx) => data((y + dy*idx) * side + (x + dx*idx))).foldRight(1)(_*_);
   }
-
-  println((for {
+  var products = for {
     x <- List.range(0, side)
     y <- List.range(0, side)
     delta <- List(Array(1, 0), Array(0, 1), Array(1, 1), Array(-1, 1))
     if inBounds(x + delta(0)*(veclen-1), y + delta(1)*(veclen-1))
-  } yield vector(x, y, delta(0), delta(1)).foldRight(1)(_*_)).foldRight(0)(Math.max));
+  } yield vecprod(x, y, delta(0), delta(1));
+  println(products.foldRight(0)(Math.max));
 }

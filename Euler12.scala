@@ -1,16 +1,11 @@
 object Euler12 extends Application {
-  def divisors (x :Int) :List[Int] = {
-    List.flatten(for { 
-      divis <- List.range(1, Math.sqrt(x)+1)
-      if x % divis == 0
-    } yield List(divis, x / divis).removeDuplicates);
+  def findnum (i :Int, x :Int) :Int = {
+    var divs = List.flatten(for {
+      div <- List.range(1, Math.sqrt(x)+1)
+      if x % div == 0
+    } yield List(div, x / div).removeDuplicates);
+    if (divs.length > 500) return x;
+    else return findnum(i+1, x+i);
   }
-
-  var x = 0; var i = 0; var divs = 0;
-  while (divs <= 500) {
-    i = i + 1;
-    x = x + i;
-    divs = divisors(x).length;
-  }
-  println(x);
+  println(findnum(1, 0));
 }

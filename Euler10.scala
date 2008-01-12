@@ -1,17 +1,13 @@
 object Euler10 extends Application {
   var numbers = List.range(2,1000000).toArray;
-  var sum :Long = 0;
-  var idx = 0;
-  while (idx >= 0) {
+  def sumprimes (idx :Int, sum :Long) :Long = {
     var prime = numbers(idx);
-    sum += prime;
-    var midx = idx;
-    while (midx < numbers.length) {
+    for (midx <- List.range(idx, numbers.length, prime)) {
       numbers(midx) = 0;
-      midx += prime;
     }
     val nidx = numbers.slice(idx, numbers.length).findIndexOf((a) => (a != 0));
-    if (nidx == -1) idx = -1 else idx = idx + nidx;
+    if (nidx == -1) return sum + prime;
+    else return sumprimes(idx + nidx, sum + prime);
   }
-  println(sum);
+  println(sumprimes(0, 0));
 }
