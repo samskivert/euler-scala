@@ -1,13 +1,11 @@
-import java.util.HashMap;
-
 public class Euler15
 {
     public static final int SIZE = 20;
+
     public static final long paths (int size, int x, int y)
     {
-        int key = ((size - x) << 16 | (size - y));
-        Long paths = _paths.get(key);
-        if (paths != null) {
+        long paths = _paths[size-x][size-y];
+        if (paths != 0L) {
             return paths;
         }
 
@@ -19,9 +17,7 @@ public class Euler15
             paths = paths + paths(size, x, y+1);
         }
 
-        _paths.put(key, paths);
-
-        return paths;
+        return (_paths[size-x][size-y] = paths);
     }
 
     public static final void main (String[] args)
@@ -31,5 +27,5 @@ public class Euler15
         System.out.println("[total " + (System.currentTimeMillis() - start) + "ms]");
     }
 
-    protected static HashMap<Integer,Long> _paths = new HashMap<Integer,Long>();
+    protected static long[][] _paths = new long[SIZE+1][SIZE+1];
 }
