@@ -17,20 +17,14 @@ object Euler18 extends Application {
                                 75
   );
 
-  def maxadd (max :List[Int], add :List[Int]) :List[Int] = {
-    var result :Array[Int] = Array.make(add.length, 0);
-    for (i <- List.range(0, add.length)) {
-      result(i) = add(i) + Math.max(max(i), max(i+1));
+  def fold (triangle :List[Int], max :List[Int]) :Int = {
+    if (max.length == 1) {
+      return max(0);
+    } else {
+      return fold(triangle.drop(max.length-1), List.range(0, max.length-1).map(
+        (i) => (triangle(i) + Math.max(max(i), max(i+1)))));
     }
-    return result.toList;
   }
-
-  var offset = 0;
-  var max :List[Int] = triangle.slice(offset, 15);
-  for (width <- List.range(2, max.length+1).reverse) {
-    offset = offset + width;
-    max = maxadd(max, triangle.slice(offset, offset+width-1));
-  }
-
-  println(max(0));
+  var base = (Math.sqrt(1+8*triangle.length) - 1) / 2; // 15
+  println(fold(triangle.drop(base), triangle.slice(0, base)));
 }
