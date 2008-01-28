@@ -1,18 +1,6 @@
-object Euler27 extends Application {
+object Euler27 extends EulerApp {
   val MAX_N = 80;
-
-  var primes = List.range(0,MAX_N*MAX_N + MAX_N*1000 + 1000).toArray;
-  var idx = 2;
-  while (idx >= 0) {
-    var prime = primes(idx);
-    var midx = idx + prime;
-    while (midx < primes.length) {
-      primes(midx) = 0;
-      midx += prime;
-    }
-    val nidx = primes.slice(idx+1, primes.length).findIndexOf((a) => (a != 0));
-    if (nidx == -1) idx = -1 else idx = idx + 1 + nidx;
-  }
+  val primes = genprimes(MAX_N*MAX_N + MAX_N*1000 + 1000);
 
   def polyprimes (a :Int, b :Int, n :Int) :Int = {
     val r = Math.abs(n*n + a*n + b);

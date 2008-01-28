@@ -10,7 +10,7 @@ if [ ! -d classes ]; then
 fi
 
 echo "Compiling Euler$1.scala..."
-scalac -deprecation -d classes Euler$1.scala
+scalac -deprecation -d classes EulerApp.scala Euler$1.scala
 if [ $? != 0 ]; then
     exit $?
 fi
