@@ -1,3 +1,6 @@
+import scala.io.Source;
+import scala.runtime.RichString;
+
 class EulerApp extends Application {
   def genprimes (range :Int) :Array[Int] = {
     val primes = List.range(0,range).toArray;
@@ -14,5 +17,10 @@ class EulerApp extends Application {
       if (nidx == -1) idx = -1 else idx = idx + 1 + nidx;
     }
     return primes;
+  }
+
+  def trim (name :String) = name.slice(1, name.length-1);
+  def readwords (file :String) :List[RichString] = {
+    return Source.fromFile(file).getLine(0).split(',').map(trim).toList.sort(_<_);
   }
 }
