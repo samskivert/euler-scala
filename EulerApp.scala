@@ -2,6 +2,10 @@ import scala.io.Source;
 import scala.runtime.RichString;
 
 class EulerApp extends Application {
+  def isprime (n :Int) :Boolean = {
+    List.range(2, Math.sqrt(n).toInt+1).foldRight(true)((d, p) => p && (n % d != 0))
+  }
+
   def genprimes (range :Int) :Array[Int] = {
     val primes = List.range(0,range).toArray;
     primes(1) = 0;
