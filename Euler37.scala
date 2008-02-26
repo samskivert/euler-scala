@@ -1,11 +1,9 @@
 object Euler37 extends EulerApp {
   val primes = genprimes(1000000);
-  def isrtrunc (prime :Int) :Boolean = {
+  def isrtrunc (prime :Int) :Boolean =
     (prime == 0) || ((primes(prime) != 0) && isrtrunc(prime/10));
-  }
-  def isltrunc (digits :List[Char]) :Boolean = {
-    (digits == Nil) || ((primes(digits.mkString.toInt) != 0) && isltrunc(digits.tail));
-  }
-  def istrunc (prime :Int) = isrtrunc(prime) && isltrunc(prime.toString.toList)
-  println(primes.drop(10).filter(0.!=).filter(istrunc).foldRight(0)(_+_));
+  def isltrunc (prime :String) :Boolean =
+    prime.isEmpty || ((primes(prime.toInt) != 0) && isltrunc(prime.substring(1)));
+  def istrunc (prime :Int) = isrtrunc(prime) && isltrunc(prime.toString)
+  println(primes.drop(10).filter(0.!=).filter(istrunc).foldLeft(0)(_+_));
 }
