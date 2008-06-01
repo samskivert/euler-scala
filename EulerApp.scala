@@ -20,6 +20,6 @@ class EulerApp extends Application {
 
   def trim (name :String) = name.slice(1, name.length-1);
   def readwords (file :String) :List[RichString] = {
-    return Source.fromFile(file).getLine(0).split(',').map(trim).toList.sort(_<_);
+    return Source.fromFile(file).getLines.next.split(',').map(trim).toList.sort(_<_);
   }
 }
