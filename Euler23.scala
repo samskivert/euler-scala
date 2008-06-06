@@ -4,7 +4,7 @@ object Euler23 extends Application {
   def sumdiv (x :Int) :Int = (1 :: List.flatten(for { 
     divis <- List.range(2, Math.sqrt(x)+1)
     if x % divis == 0
-  } yield List(divis, x / divis).removeDuplicates)).foldLeft(0)(_+_);
+  } yield List(divis, x / divis).removeDuplicates)).sum;
 
   val max = 28123;
   val abundant = List.range(1, max+1).filter(a => (a < sumdiv(a))).toArray;
@@ -16,5 +16,5 @@ object Euler23 extends Application {
       else return filter(abund, ints, a+1, 0);
     else return filter(abund, ints, a, b+1);
   }
-  println(filter(abundant, Set() ++ List.range(1, max+1), 0, 0).foldLeft(0)(_+_));
+  println(filter(abundant, Set() ++ List.range(1, max+1), 0, 0).sum);
 }

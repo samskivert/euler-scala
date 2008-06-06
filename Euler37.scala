@@ -5,5 +5,5 @@ object Euler37 extends EulerApp {
   def isltrunc (prime :String) :Boolean =
     prime.isEmpty || ((primes(prime.toInt) != 0) && isltrunc(prime.substring(1)));
   def istrunc (prime :Int) = isrtrunc(prime) && isltrunc(prime.toString)
-  println(primes.drop(10).filter(0.!=).filter(istrunc).foldLeft(0)(_+_));
+  println(primes.drop(10).filter(0.!=).filter(istrunc).sum);
 }
