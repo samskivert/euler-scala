@@ -1,16 +1,20 @@
-import scala.io.Source;
-import scala.runtime.RichString;
+import scala.io.Source
+import scala.runtime.RichString
 
 class EulerApp extends Application {
   class RichInterable (it :Iterable[Int]) {
     def sum = it.foldLeft(0)(_+_)
     def max = it.foldLeft(0)(Math.max)
+    def min = it.foldLeft(0)(Math.min)
   }
   implicit def richInterable (it: Iterable[Int]) = new RichInterable(it)
 
-  def isprime (n :Int) :Boolean = {
-    List.range(2, Math.sqrt(n).toInt+1).reverse.foldLeft(true)((p, d) => p && (n % d != 0))
-  }
+  def isprime (n :Int) :Boolean =
+    List.range(2, Math.sqrt(n).toInt+1).forall(n % _ != 0)
+  def isprime (n :Long) :Boolean =
+    List.range(2, Math.sqrt(n).toInt+1).forall(n % _ != 0)
+  def isprime (n :BigInt) :Boolean =
+    List.range(2, Math.sqrt(n.doubleValue).toInt+1).forall(n % _ != 0)
 
   def genprimes (range :Int) :Array[Int] = {
     val primes = List.range(0,range).toArray
@@ -24,8 +28,26 @@ class EulerApp extends Application {
     return primes
   }
 
-  def trim (name :String) = name.slice(1, name.length-1)
-  def readwords (file :String) :List[RichString] = {
-    return Source.fromFile(file).getLines.next.split(',').map(trim).toList.sort(_<_)
+  def gcd (n :Int, d :Int) :Int = if (d == 0) n else gcd(d, n%d)
+
+  def primefacts (primes :Iterable[Int], n :Int) :List[Int] = {
+    var facts :List[Int] = Nil
+    var curn = n
+    for (p <- primes.takeWhile(p => p*p < n)) {
+      if (curn % p == 0) {
+        facts = p :: facts
+        do curn = curn / p while (curn % p == 0)
+      }
+    }
+    if (curn == 1) facts else curn :: facts
   }
+
+  def readline (file :String) :RichString =
+    Source.fromFile(file).getLines.next.stripLineEnd
+  def readwords (file :String) :List[RichString] =
+    readline(file).split(',').map(n => n.slice(1, n.length-1)).toList.sort(_<_)
+  def readnums (file :String) :List[Int] =
+    readline(file).split(',').toList.map(_.toInt)
+  def readlines (file :String) :List[String] =
+    Source.fromFile(file).getLines.map(_.stripLineEnd).toList
 }

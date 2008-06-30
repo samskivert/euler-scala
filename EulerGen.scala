@@ -19,7 +19,7 @@ object EulerGen {
 
     println("Generating " + name + "...");
     val out = new PrintWriter(new FileWriter(file));
-    out.println("object Euler" + n + " extends Application {");
+    out.println("object Euler" + n + " extends EulerApp {");
     out.println("  // brilliant solution goes here");
     out.println("}");
     out.close();
