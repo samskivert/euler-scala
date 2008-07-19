@@ -30,10 +30,10 @@ class EulerApp extends Application {
 
   def gcd (n :Int, d :Int) :Int = if (d == 0) n else gcd(d, n%d)
 
-  def primefacts (primes :Iterable[Int], n :Int) :List[Int] = {
+  def primefacts (primes :Iterable[Int], n :Int) = {
     var facts :List[Int] = Nil
     var curn = n
-    for (p <- primes.takeWhile(p => p*p < n)) {
+    for (p <- primes.takeWhile(p => p*p <= n)) {
       if (curn % p == 0) {
         facts = p :: facts
         do curn = curn / p while (curn % p == 0)
