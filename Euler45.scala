@@ -11,10 +11,5 @@ object Euler45 extends Application {
     else if (pent < tri) 0
     else findh(pent, p-1)
   }
-  def find (t :Long) :Long = {
-    val n = findp(t*(t+1)/2, t-1)
-    if (n != 0) n
-    else find(t+1)
-  }
-  println(find(286))
+  println(Stream.from(286).map(t => findp(t.toLong*(t+1)/2, t-1)).find(0.!=).get)
 }
