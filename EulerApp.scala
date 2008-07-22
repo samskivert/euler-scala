@@ -9,15 +9,36 @@ class EulerApp extends Application {
   }
   implicit def richInterable (it: Iterable[Int]) = new RichInterable(it)
 
-  def isprime (n :Int) :Boolean =
-    List.range(2, Math.sqrt(n).toInt+1).forall(n % _ != 0)
-  def isprime (n :Long) :Boolean =
-    List.range(2, Math.sqrt(n).toInt+1).forall(n % _ != 0)
-  def isprime (n :BigInt) :Boolean =
-    List.range(2, Math.sqrt(n.doubleValue).toInt+1).forall(n % _ != 0)
+  def isprime (n :Int) :Boolean = {
+    val limit = Math.sqrt(n).toInt+1
+    var ii = 2
+    while (ii < limit) {
+      if (n % ii == 0) return false
+      ii = ii+1
+    }
+    true
+  }
+  def isprime (n :Long) :Boolean = {
+    val limit = Math.sqrt(n).toInt+1
+    var ii = 2
+    while (ii < limit) {
+      if (n % ii == 0) return false
+      ii = ii+1
+    }
+    true
+  }
+  def isprime (n :BigInt) :Boolean = {
+    val limit = Math.sqrt(n.doubleValue).toInt+1
+    var ii = 2
+    while (ii < limit) {
+      if (n % ii == 0) return false
+      ii = ii+1
+    }
+    true
+  }
 
   def genprimes (range :Int) :Array[Int] = {
-    val primes = List.range(0,range).toArray
+    val primes = Array.range(0, range)
     primes(1) = 0
     var idx = 2
     while (idx < range) {
