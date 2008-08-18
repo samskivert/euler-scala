@@ -1,13 +1,13 @@
 object Euler50 extends EulerApp {
   val pvec = genprimes(1000000)
   val primes = pvec.filter(0.!=)
-  def lsum (idx :Int, sum :Int, length :Int, longest :Pair[Int,Int]) :Pair[Int,Int] = {
-    val nsum = primes(idx) + sum
-    if (nsum > primes.last) longest
-    else if (nsum == primes.last) Pair(nsum, length+1)
-    else if (pvec(nsum) != 0) lsum(idx+1, nsum, length+1, Pair(nsum, length+1))
-    else lsum(idx+1, nsum, length+1, longest)
+  case class PSum (sum :Int, length :Int) {
+    def add (prime :Int) = PSum(sum+prime, length+1)
   }
-  def longer (a :Pair[Int,Int], b :Pair[Int,Int]) = if (a._2 > b._2) a else b
-  println(0.until(primes.length).map(lsum(_, 0, 0, Pair(0, 0))).reduceLeft(longer)._1)
+  def fsum (idx :Int, csum :PSum, lsum :PSum) :PSum = {
+    if (idx >= primes.length || csum.sum >= pvec.length) lsum
+    else fsum(idx+1, csum.add(primes(idx)), if (pvec(csum.sum) != 0) csum else lsum)
+  }
+  def longer (one :PSum, two :PSum) = if (one.length > two.length) one else two
+  println(0.until(primes.length).map(fsum(_, PSum(0, 0), PSum(0, 0))).reduceLeft(longer).sum)
 }
