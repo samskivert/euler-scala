@@ -1,5 +1,4 @@
 import scala.io.Source
-import scala.runtime.RichString
 
 class EulerApp extends Application {
   class RichInterable (it :Iterable[Int]) {
@@ -63,12 +62,12 @@ class EulerApp extends Application {
     if (curn == 1) facts else curn :: facts
   }
 
-  def readline (file :String) :RichString =
-    Source.fromFile(file).getLines.next.stripLineEnd
-  def readwords (file :String) :List[RichString] =
-    readline(file).split(',').map(n => n.slice(1, n.length-1)).toList.sort(_<_)
+  def readline (file :String) :String =
+    Source.fromPath(file).getLines().next.stripLineEnd
+  def readwords (file :String) :List[String] =
+    readline(file).split(',').map(n => n.slice(1, n.length-1)).toList.sortWith(_<_)
   def readnums (file :String) :List[Int] =
     readline(file).split(',').toList.map(_.toInt)
   def readlines (file :String) :List[String] =
-    Source.fromFile(file).getLines.map(_.stripLineEnd).toList
+    Source.fromPath(file).getLines().map(_.stripLineEnd).toList
 }
