@@ -1,24 +1,9 @@
-import scala.collection.immutable.TreeSet
 object Euler83 extends EulerApp {
-  val deltas = List((-1,0),(0,-1),(1,0),(0,1))
+  def min4 (a :Int, b :Int, c :Int, d :Int) = Math.min(Math.min(a, b), Math.min(c, d))
   val matrix = readlines("matrix.txt").map(_.split(",").map(_.toInt)).toArray
-  val costs = Array.fill(matrix.length, matrix.length)(Int.MaxValue)
-  costs(0)(0) = matrix(0)(0)
-  var nodes = TreeSet((costs(0)(0), 0, 0))
-  while (!nodes.isEmpty) {
-    val node = nodes.head
-    nodes -= node
-    for ((nx, ny) <- deltas.map(p => (node._2+p._1, node._3+p._2))) {
-      if (ny >= 0 && ny < matrix.length && nx >= 0 && nx < matrix.length) {
-        val nc = node._1 + matrix(ny)(nx)
-        val cc = costs(ny)(nx)
-        if (cc > nc) {
-          nodes -= Tuple3(cc, nx, ny)
-          costs(ny)(nx) = nc
-          nodes += Tuple3(nc, nx, ny)
-        }
-      }
-    }
-  }
-  println(costs.last.last)
+  val cs = Array.fill(matrix.length+2, matrix.length+2)(Int.MaxValue)
+  cs(1)(0) = 0
+  for (i <- 0 until 4; y <- 0 until matrix.length; x <- 0 until matrix.length)
+    cs(y+1)(x+1) = matrix(y)(x) + min4(cs(y+2)(x+1), cs(y)(x+1), cs(y+1)(x), cs(y+1)(x+2))
+  println(cs(matrix.length)(matrix.length))
 }
