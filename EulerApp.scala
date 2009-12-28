@@ -3,6 +3,7 @@ import scala.io.Source
 class EulerApp extends Application {
   class RichInterable (it :Iterable[Int]) {
     def sum = it.foldLeft(0)(_+_)
+    def prod = it.foldLeft(0)(_*_)
     def max = it.foldLeft(0)(Math.max)
     def min = it.foldLeft(0)(Math.min)
   }
