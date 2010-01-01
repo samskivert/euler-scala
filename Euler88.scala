@@ -1,40 +1,15 @@
+import scala.collection.mutable.Map
 object Euler88 extends EulerApp {
-  def minprodsum (k :Int) :Int = {
-    val vec = Array.fill(k)(1)
-    var s = k+2
-    while (s < 2*k) {
-      var ii = 0
-      while (ii < vec.length) {
-        vec(ii) = 1
-        ii += 1
-      }
-      var p = s-k+1
-      vec(vec.length-1) = p;
-      // println("Foo " + vec.toList)
-      while (p < s && vec(vec.length-1) > 2) {
-        var idx = 0
-        while (idx < vec.length-1 && vec(idx+1) <= 2) idx += 1
-        if (idx < vec.length-2 && vec(idx+2)-vec(idx+1)>1) idx += 1
-        val di = idx+1
-        var ii = idx
-        while (vec(ii) == vec(di)-1) ii -= 1
-        val op = vec(di)*vec(ii)
-        val np = op+vec(di)-vec(ii)-1
-        p /= op
-        p *= np
-        vec(di) -= 1
-        vec(ii) += 1
-        // println("Checking " + vec.toList + " -> " + p + " ?= " + s)
-      }
-      if (p == s) {
-        printf("mps %2d -> %2d %s\n", k, s, vec.toList.reverse.takeWhile(1.!=))
-        return s
-      }
-      s += 2-k%2
+  def minprodsum (mins :Array[Int], n :Int, p :Int, s :Int, l :Int) {
+    val np = p * n
+    val k = np - (s+n) + (l+1)
+    if (k < mins.length) {
+      mins(k) = Math.min(np, mins(k))
+      minprodsum(mins, n, np, s+n, l+1)
     }
-    printf("MPS %2d -> %2d List(%d, 2)\n", k, (2*k), k)
-    return 2*k
+    if (n > 2) minprodsum(mins, n-1, p, s, l)
   }
-  println(2.to(120).map(minprodsum).removeDuplicates.sum)
-//  println(2.to(12000).map(minprodsum).removeDuplicates.sum)
+  val mins = Array.tabulate(12001)(2*_)
+  minprodsum(mins, 12000, 1, 0, 0)
+  println(mins.drop(2).toList.removeDuplicates.sum)
 }
