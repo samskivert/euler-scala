@@ -1,44 +1,31 @@
-import scala.io.Source;
-
-object Euler54 extends Application {
-  val ranks = List('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
-
-  object Card {
-    def compare (c1 :Card, c2 :Card) =
-      if (c1.rank == c2.rank) c1.suit > c2.suit else c1.rank > c2.rank
-
-    def compareList (l1 :List[Card], l2 :List[Card]) =
-      (l1.length > l2.length) || (l1.length == l2.length && compare(l1(0), l2(0)))
-  }
-
+object Euler54 extends EulerApp {
   class Card (s :String) {
     val suit :Char = s.charAt(1)
-    val rank :Int = ranks.indexOf(s.charAt(0))
-    override def toString () :String = "" + ranks(rank) + suit
+    val rank :Int = "23456789TJQKA".indexOf(s.charAt(0))
+    def > (o :Card) = if (rank == o.rank) suit > o.suit else rank > o.rank
   }
 
-  object Hand {
-    def group (cards :List[Card]) :List[List[Card]] =
-      if (cards == Nil) Nil
-      else {
-        val g = cards.takeWhile(c => c.rank == cards.head.rank)
-        g :: group(cards.drop(g.length))
+  class Hand (c :Seq[Card]) {
+    def groupCards (cards :List[Card]) :List[List[Card]] =
+      if (cards.isEmpty) Nil else {
+        val g = cards.takeWhile(_.rank == cards.head.rank)
+        g :: groupCards(cards.drop(g.length))
       }
-  }
 
-  class Hand (cards :List[Card]) {
-    val group = Hand.group(cards).sort(Card.compareList)
+    val cards = c.toList.sortWith(_>_)
+    val group = groupCards(cards).sortWith((l1, l2) =>
+      (l1.length > l2.length) || (l1.length == l2.length && l1(0) > l2(0)))
 
     def isPair () = group.head.length == 2
     def isTwoPair () = group(0).length == 2 && group(1).length == 2
     def isThree () = group.head.length == 3
-    def isStraight () = !List.range(1, 5).exists(ii => cards(ii).rank != cards.head.rank-ii)
-    def isFlush () = !cards.drop(1).exists(c => c.suit != cards.head.suit)
+    def isStraight () = !(1 until 5).exists(ii => cards(ii).rank != cards.head.rank-ii)
+    def isFlush () = !cards.tail.exists(_.suit != cards.head.suit)
     def isFull () = group.head.length == 3 && group.last.length == 2
     def isFour () = group.head.length == 4
-    def isRoyal () = cards.head.rank == 13 && isStraight() && isFlush()
+    def isRoyal () = cards.head.rank == 13 && isStraight && isFlush
 
-    def score () = group.foldLeft(0)((a, b) => b.head.rank + a*0xF)
+    val score = group.foldLeft(0)((b, a) => a.head.rank + b*0xF)
 
     def rank () =
       if (isRoyal) 0x900000
@@ -51,16 +38,12 @@ object Euler54 extends Application {
       else if (isTwoPair) 0x200000 + score
       else if (isPair) 0x100000 + score
       else score
-
-    override def toString () :String = cards.tail.foldLeft(""+cards.head)((a, b) => a+","+b)
   }
 
-  def toHands (line :String) :Pair[Hand,Hand] = {
+  def toHands (line :String) = {
     val cards = line.split(' ').map(s => new Card(s))
-    Pair(new Hand(cards.take(5).toList.sort(Card.compare)),
-         new Hand(cards.drop(5).toList.sort(Card.compare)))
+    (new Hand(cards.take(5)), new Hand(cards.drop(5)))
   }
 
-  val lines = Source.fromFile("poker.txt").getLines
-  println(lines.toList.map(toHands).filter(p => p._1.rank > p._2.rank).length)
+  println(readlines("poker.txt").map(toHands).filter(p => p._1.rank > p._2.rank).length)
 }
