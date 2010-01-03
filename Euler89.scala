@@ -11,5 +11,5 @@ object Euler89 extends EulerApp {
     case Nil => ""
     case h::t => if (n >= h._2) h._1 + d2r(n-h._2, ts) else d2r(n, t)
   }
-  println(readlines("roman.txt").map(s => s.length - d2r(r2d(s)).length).sum)
+  println(readlines("roman.txt") map(s => s.length - d2r(r2d(s)).length) sum)
 }
