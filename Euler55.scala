@@ -4,5 +4,5 @@ object Euler55 extends EulerApp {
     if (iter > 0 && ispal(n.toString)) 0
     else if (iter == 50) 1
     else islychrel(n + BigInt(n.toString.reverse), iter+1)
-  println((1 to 9999).map(n => islychrel(n)).sum)
+  println(1 to 9999 map(n => islychrel(n)) sum)
 }
