@@ -16,4 +16,4 @@ if [ $? != 0 ]; then
 fi
 
 echo "Running Euler$1..."
-time scala -cp classes Euler$1
+time -f %E scala -cp classes Euler$1
