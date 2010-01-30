@@ -16,4 +16,8 @@ if [ $? != 0 ]; then
 fi
 
 echo "Running Euler$1..."
-time -f %E scala -cp classes Euler$1
+TIME_OPTS="-f %E"
+if [ `uname -s` = "Darwin" ]; then
+    TIME_OPTS=""
+fi
+time $TIME_OPTS scala -cp classes Euler$1
