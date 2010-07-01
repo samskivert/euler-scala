@@ -1,16 +1,16 @@
 import scala.io.Source
 
 class EulerApp extends Application {
-  class RichInterable (it :Iterable[Int]) {
+  class RichIntTrav (it :Traversable[Int]) {
     def sum = it.foldLeft(0)(_+_)
     def prod = it.foldLeft(1)(_*_)
-    def max = it.foldLeft(0)(Math.max)
-    def min = it.foldLeft(0)(Math.min)
+    def max = it.foldLeft(0)(math.max)
+    def min = it.foldLeft(0)(math.min)
   }
-  implicit def richInterable (it: Iterable[Int]) = new RichInterable(it)
+  implicit def richIntTrav (it: Iterable[Int]) = new RichIntTrav(it)
 
   def isprime (n :Int) :Boolean = {
-    val limit = Math.sqrt(n).toInt+1
+    val limit = math.sqrt(n).toInt+1
     var ii = 2
     while (ii < limit) {
       if (n % ii == 0) return false
@@ -19,7 +19,7 @@ class EulerApp extends Application {
     true
   }
   def isprime (n :Long) :Boolean = {
-    val limit = Math.sqrt(n).toInt+1
+    val limit = math.sqrt(n).toInt+1
     var ii = 2
     while (ii < limit) {
       if (n % ii == 0) return false
@@ -28,7 +28,7 @@ class EulerApp extends Application {
     true
   }
   def isprime (n :BigInt) :Boolean = {
-    val limit = Math.sqrt(n.doubleValue).toInt+1
+    val limit = math.sqrt(n.doubleValue).toInt+1
     var ii = 2
     while (ii < limit) {
       if (n % ii == 0) return false
@@ -64,11 +64,11 @@ class EulerApp extends Application {
   }
 
   def readline (file :String) :String =
-    Source.fromPath(file).getLines().next.stripLineEnd
+    Source.fromFile(file).getLines().next.stripLineEnd
   def readwords (file :String) :List[String] =
     readline(file).split(',').map(n => n.slice(1, n.length-1)).toList.sortWith(_<_)
   def readnums (file :String) :List[Int] =
     readline(file).split(',').toList.map(_.toInt)
   def readlines (file :String) :List[String] =
-    Source.fromPath(file).getLines().map(_.stripLineEnd).toList
+    Source.fromFile(file).getLines().map(_.stripLineEnd).toList
 }
