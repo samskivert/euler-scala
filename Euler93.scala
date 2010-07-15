@@ -29,8 +29,8 @@ object Euler93 {
     TreeSet[Int]() ++ reduce(lls) ++ reduce(rrs) ++ reduce(bbs) ++ reduce(lrs) ++ reduce(rls)
   }
 
-  val sets = for (a <- 1 to 10; b <- (a+1) to 10;
-                  c <- (b+1) to 10; d <- (c+1) to 10) yield List(a, b, c, d)
+  val sets = for (a <- 1 to 9; b <- (a+1) to 9; c <- (b+1) to 9; d <- (c+1) to 9)
+             yield List(a, b, c, d)
 
   def proc (l :List[Int]) = (l.mkString, gendigs(l).foldLeft(0)((k, v) => if (k == v-1) v else k))
 
