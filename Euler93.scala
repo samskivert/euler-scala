@@ -1,4 +1,4 @@
-object Euler93 extends EulerApp {
+object Euler93 {
   trait Expr { def eval :Float }
   case class Plus (a :Expr, b :Expr) extends Expr { def eval = a.eval + b.eval }
   case class Minus (a :Expr, b :Expr) extends Expr { def eval = a.eval - b.eval }
@@ -33,5 +33,8 @@ object Euler93 extends EulerApp {
                   c <- (b+1) to 10; d <- (c+1) to 10) yield List(a, b, c, d)
 
   def proc (l :List[Int]) = (l.mkString, gendigs(l).foldLeft(0)((k, v) => if (k == v-1) v else k))
-  println(sets map(proc) reduceLeft((b, a) => if (a._2 > b._2) a else b) _1)
+
+  def main (arg :Array[String]) {
+    println(sets map(proc) reduceLeft((b, a) => if (a._2 > b._2) a else b) _1)
+  }
 }
