@@ -21,10 +21,8 @@ object Euler96 extends EulerApp {
       val s = sect(g, itos(i), i)
       var ng = g(i) -- (known(r) ++ known(c) ++ known(s))
       if (ng.size > 1) {
-        for (v <- ng) {
-          if (count(r, v) == 0 || count(c, v) == 0 || count(s, v) == 0) {
-            ng = Set(v)
-          }
+        for (v <- ng; if (count(r, v) == 0 || count(c, v) == 0 || count(s, v) == 0)) {
+          ng = Set(v)
         }
       }
       reduced += g(i).size - ng.size
