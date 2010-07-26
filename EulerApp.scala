@@ -1,6 +1,6 @@
 import scala.io.Source
 
-class EulerApp extends Application {
+abstract class EulerApp {
   class RichIntTrav (it :Traversable[Int]) {
     def sum = it.foldLeft(0)(_+_)
     def prod = it.foldLeft(1)(_*_)
@@ -71,4 +71,11 @@ class EulerApp extends Application {
     readline(file).split(',').toList.map(_.toInt)
   def readlines (file :String) :List[String] =
     Source.fromFile(file).getLines().map(_.stripLineEnd).toList
+
+  // computes and returns the solution
+  def answer :Any
+
+  def main (args :Array[String]) {
+    println(answer)
+  }
 }
