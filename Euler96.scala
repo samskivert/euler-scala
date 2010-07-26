@@ -11,7 +11,7 @@ object Euler96 extends EulerApp {
     (p zipWithIndex) filter(e => itos(e._2) == s && e._2 != i) map(_._1)
 
   def known (group :Seq[Set[Int]]) = Set() ++ group filter(_.size == 1) flatten
-  def count (p :Seq[Set[Int]], v :Int) = p.foldLeft(0)((c, s) => if (s(v)) c+1 else c)
+  def count (p :Seq[Set[Int]], v :Int) = (0 /: p) ((c, s) => if (s(v)) c+1 else c)
 
   def reduce (g :Array[Set[Int]]) :Array[Set[Int]] = {
     var reduced = 0
@@ -38,12 +38,7 @@ object Euler96 extends EulerApp {
           val ng = explore(g.clone, i, v); 
           if (isComplete(ng))) yield ng).head
 
-  def format (g :Array[Set[Int]]) =
-    g map(_.mkString(":")) grouped(9) map(_.mkString(" ")) mkString("\n")
   def toGrid (p :String) = p map(c => if (c == '0') 1 to 9 toSet else Set(c - '0')) toArray
-  override def main (args :Array[String]) {
-    val puzzles = List() ++ readlines("sudoku.txt") grouped(10) map(_.tail.mkString) map(toGrid)
-    // puzzles foreach { p => println("\n" + format(guess(reduce(p)))) }
-    println(puzzles map(p => guess(reduce(p)).take(3).toList.flatten.mkString.toInt) sum)
-  }
+  val puzzles = readlines("sudoku.txt") grouped(10) map(_.tail.mkString) map(toGrid)
+  def answer = puzzles map(p => guess(reduce(p)).take(3).toList.flatten.mkString.toInt) sum
 }

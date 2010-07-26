@@ -1,4 +1,4 @@
-object Euler94 {
+object Euler94 extends EulerApp {
   val MAX = 1000000000L/3
   def check (a :Double, b :Double) :Long = {
     val area = b * math.sqrt(a*a - b*b)
@@ -9,7 +9,5 @@ object Euler94 {
     if (a > MAX) accum
     else scan(a+1, accum + check(a, (a-1)/2.0) + check(a, (a+1)/2.0))
   }
-  def main (args :Array[String]) {
-    println(scan(3, 0))
-  }
+  def answer = scan(3, 0)
 }

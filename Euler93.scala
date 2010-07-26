@@ -1,4 +1,4 @@
-object Euler93 {
+object Euler93 extends EulerApp {
   trait Expr { def eval :Float }
   case class Plus (a :Expr, b :Expr) extends Expr { def eval = a.eval + b.eval }
   case class Minus (a :Expr, b :Expr) extends Expr { def eval = a.eval - b.eval }
@@ -29,12 +29,8 @@ object Euler93 {
     TreeSet[Int]() ++ reduce(lls) ++ reduce(rrs) ++ reduce(bbs) ++ reduce(lrs) ++ reduce(rls)
   }
 
+  def proc (l :List[Int]) = (l.mkString, (0 /: gendigs(l)) ((k, v) => if (k == v-1) v else k))
   val sets = for (a <- 1 to 9; b <- (a+1) to 9; c <- (b+1) to 9; d <- (c+1) to 9)
-             yield List(a, b, c, d)
-
-  def proc (l :List[Int]) = (l.mkString, gendigs(l).foldLeft(0)((k, v) => if (k == v-1) v else k))
-
-  def main (arg :Array[String]) {
-    println(sets map(proc) reduceLeft((b, a) => if (a._2 > b._2) a else b) _1)
-  }
+             yield proc(List(a, b, c, d))
+  def answer = sets.sortWith(_._2 > _._2).head._1
 }

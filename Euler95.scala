@@ -13,5 +13,5 @@ object Euler95 extends EulerApp {
   val MAX = 1000000
   val sumdivs = (0 to MAX) map(divisors(_).sum) toArray
   val chains = 0 to MAX map(n => follow(sumdivs, n, n :: Nil))
-  println(chains reduceLeft((b,a) => if (a.length > b.length) a else b) sortWith(_<_) head)
+  def answer = chains reduceLeft((b,a) => if (a.length > b.length) a else b) sortWith(_<_) head
 }

@@ -47,9 +47,9 @@ object Euler98 extends EulerApp {
     loop(w1, Map(), Set() ++ (0 to 9)).foldLeft(0)(math.max)
   }
 
-  override def main (args :Array[String]) {
+  def answer = {
     val words = readlines("words.txt").map(_ split(",")).head.map(_ replace("\"", ""))
-    words.map(dict.add(_))
-    println((for (w <- words; a <- dict.anagrams(w)) yield findsq(w, a)).reduceLeft(math.max))
+    words.foreach(dict.add(_))
+    (for (w <- words; a <- dict.anagrams(w)) yield findsq(w, a)) reduceLeft(math.max)
   }
 }
