@@ -1,5 +1,4 @@
 object Euler56 extends EulerApp {
-  def powsum (a :Int, b :Int) = BigInt(a).pow(b).toString.map(c => (c-'0')).sum;
-  var sums = for { a <- List.range(90, 100); b <- List.range(90, 100) } yield powsum(a, b);
-  println(sums.max);
+  def answer = (for { a <- 90 to 100; b <- 90 to 100 }
+                yield BigInt(a).pow(b).toString.map(_-'0').sum) max
 }

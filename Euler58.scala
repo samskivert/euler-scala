@@ -8,5 +8,5 @@ object Euler58 extends EulerApp {
       checkring(r+1, primes+rp, nums+4);
     }
   }
-  println(checkring(4, 8, 13));
+  def answer = checkring(4, 8, 13)
 }
