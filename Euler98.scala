@@ -3,6 +3,25 @@ object Euler98 extends EulerApp {
     var hasChild :Boolean = false
     var hasWord :Boolean = false
     lazy val children = Array.fill(26)(new Node)
+
+    def add (w :String) {
+      if (w.isEmpty) hasWord = true
+      else {
+        hasChild = true
+        children(w.head - 'A').add(w.substring(1))
+      }
+    }
+    def anagrams (w :String) = {
+      def loop (in :String, cur :String) :Option[String] = {
+        if (in.isEmpty)
+          if (contains(cur) && cur > w) Some(cur)
+          else None
+          else if (!containsPrefix(cur)) None
+          else (0 until in.length).map(i => loop(in.patch(i, "", 1), cur + in(i))).
+        flatMap(a => a).headOption
+      }
+      loop(w, "")
+    }
     def contains (w :String) :Boolean = {
       if (w.isEmpty) hasWord
       else children(w.head - 'A').contains(w.substring(1))
@@ -12,29 +31,10 @@ object Euler98 extends EulerApp {
       else if (p.isEmpty) true
       else children(p.head - 'A').containsPrefix(p.substring(1))
     }
-    def add (w :String) {
-      if (w.isEmpty) hasWord = true
-      else {
-        hasChild = true
-        children(w.head - 'A').add(w.substring(1))
-      }
-    }
   }
-  val root = new Node
+  val dict = new Node
 
-  def anagrams (w :String) = {
-    def loop (in :String, cur :String) :Option[String] = {
-      if (in.isEmpty)
-        if (root.contains(cur) && cur > w) Some(cur)
-        else None
-      else if (!root.containsPrefix(cur)) None
-      else (0 until in.length).map(i => loop(in.patch(i, "", 1), cur + in(i))).
-                               flatMap(a => a).headOption
-    }
-    loop(w, "")
-  }
-
-  def checksq (w1 :String, w2 :String) = {
+  def findsq (w1 :String, w2 :String) = {
     def issq (i :Int) = math.sqrt(i) == math.sqrt(i).toInt
     def wtoi (w :String, c2d :Map[Char,Int]) = w.map(c2d).reduceLeft((r, d) => r*10+d)
     def check (s1 :Int, s2 :Int) =
@@ -49,7 +49,7 @@ object Euler98 extends EulerApp {
 
   override def main (args :Array[String]) {
     val words = readlines("words.txt").map(_ split(",")).head.map(_ replace("\"", ""))
-    words.map(root.add(_))
-    println((for (w <- words; a <- anagrams(w)) yield checksq(w, a)).reduceLeft(math.max))
+    words.map(dict.add(_))
+    println((for (w <- words; a <- dict.anagrams(w)) yield findsq(w, a)).reduceLeft(math.max))
   }
 }
