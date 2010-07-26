@@ -38,18 +38,18 @@ object Euler98 extends EulerApp {
     def issq (i :Int) = math.sqrt(i) == math.sqrt(i).toInt
     def wtoi (w :String, c2d :Map[Char,Int]) = w.map(c2d).reduceLeft((r, d) => r*10+d)
     def check (s1 :Int, s2 :Int) =
-      if (issq(s1) && issq(s2) && (s1.toString.length == s2.toString.length)) List(math.max(s1, s2))
-      else List()
-    def loop (cur :String, map :Map[Char,Int], from :Set[Int]) :List[Int] = {
-      if (cur.isEmpty) check(wtoi(w1, map), wtoi(w2, map))
-      else from.toList.flatMap(i => loop(cur.drop(1), map + (cur.head -> i), from - i))
+      if (issq(s1) && issq(s2) && (s1.toString.length == s2.toString.length)) math.max(s1, s2)
+      else 0
+    def loop (cur :String, map :Map[Char,Int], from :Set[Int], max :Int) :Int = {
+      if (cur.isEmpty) math.max(check(wtoi(w1, map), wtoi(w2, map)), max)
+      else from.map(i => loop(cur.drop(1), map + (cur.head -> i), from - i, max)).max
     }
-    loop(w1, Map(), Set() ++ (0 to 9)).foldLeft(0)(math.max)
+    loop(w1, Map(), Set() ++ (0 to 9), 0)
   }
 
   def answer = {
     val words = readlines("words.txt").map(_ split(",")).head.map(_ replace("\"", ""))
     words.foreach(dict.add(_))
-    (for (w <- words; a <- dict.anagrams(w)) yield findsq(w, a)) reduceLeft(math.max)
+    (for (w <- words; a <- dict.anagrams(w)) yield findsq(w, a)) max
   }
 }
