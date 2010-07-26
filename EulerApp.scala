@@ -2,10 +2,10 @@ import scala.io.Source
 
 abstract class EulerApp {
   class RichIntTrav (it :Traversable[Int]) {
-    def sum = it.foldLeft(0)(_+_)
-    def prod = it.foldLeft(1)(_*_)
-    def max = it.foldLeft(0)(math.max)
-    def min = it.foldLeft(0)(math.min)
+    def sum = (0 /: it)(_+_)
+    def prod = (1 /: it)(_*_)
+    def max = (0 /: it)(math.max)
+    def min = (0 /: it)(math.min)
   }
   implicit def richIntTrav (it: Iterable[Int]) = new RichIntTrav(it)
 
