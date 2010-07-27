@@ -1,14 +1,6 @@
 import scala.io.Source
 
 abstract class EulerApp {
-  class RichIntTrav (it :Traversable[Int]) {
-    def sum = (0 /: it)(_+_)
-    def prod = (1 /: it)(_*_)
-    def max = (0 /: it)(math.max)
-    def min = (0 /: it)(math.min)
-  }
-  implicit def richIntTrav (it: Iterable[Int]) = new RichIntTrav(it)
-
   def isprime (n :Int) :Boolean = {
     val limit = math.sqrt(n).toInt+1
     var ii = 2
