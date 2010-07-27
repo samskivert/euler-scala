@@ -1,11 +1,10 @@
 object Euler59 extends EulerApp {
-  def decode (nums :List[Int], key :List[Char]) =
-    0.until(nums.length).map(ii => nums(ii) ^ key(ii%key.length)).toList
-  val nums = readnums("cipher1.txt")
-  val sols = for {
-    a <- 'a'.to('z'); b <- 'a'.to('z'); c <- 'a'.to('z')
-    val decoded = decode(nums, List(a, b, c))
-    if (decoded.map(_.toChar).mkString.indexOf(" chapter") != -1)
-  } yield decoded.sum
-  println(sols.next)
+  val cipher = readline("cipher1.txt") split(',') map(_.toInt)
+  def decode (cipher :Array[Int], key :Array[Char]) =
+    (0 until cipher.length) map(ii => cipher(ii) ^ key(ii%key.length))
+  def answer = (for {
+    a <- 'a' to 'z'; b <- 'a' to 'z'; c <- 'a' to 'z'
+    val decoded = decode(cipher, Array(a, b, c))
+    if (decoded.map(_.toChar).mkString.contains(" chapter"))
+  } yield decoded.sum).head
 }
