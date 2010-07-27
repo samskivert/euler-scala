@@ -1,29 +1,26 @@
 object Euler61 extends EulerApp {
-  case class Pn (card :Int, n :Int, value :Int) {
-    def digits = value.toString.length
-    def head = value.toString.substring(0, 2)
-    def tail = value.toString.substring(2)
-    override def toString = "P" + card + "," + n + "=" + value
+  case class Pn (card :Int, value :Int) {
+    def valid = (value < 10000) && (value > 999)
+    def ab = value / 100
+    def cd = value % 100
   }
 
-  def tri (n :Int) = Pn(3, n, n*(n+1)/2)
-  def square (n :Int) = Pn(4, n, n*n)
-  def pent (n :Int) = Pn(5, n, n*(3*n-1)/2)
-  def hex (n :Int) = Pn(6, n, n*(2*n-1))
-  def hept (n :Int) = Pn(7, n ,n*(5*n-3)/2)
-  def oct (n :Int) = Pn(8, n, n*(3*n-2))
+  def tri (n :Int) = Pn(3, n*(n+1)/2)
+  def square (n :Int) = Pn(4, n*n)
+  def pent (n :Int) = Pn(5, n*(3*n-1)/2)
+  def hex (n :Int) = Pn(6, n*(2*n-1))
+  def hept (n :Int) = Pn(7, n*(5*n-3)/2)
+  def oct (n :Int) = Pn(8, n*(3*n-2))
+  def gen (max :Int)(gen :(Int) => Pn) = (1 to max) map(gen) filter(_.valid)
+  val nums = List(square _, pent _, hex _, hept _, oct _) flatMap(gen(100))
 
-  def search (nums :Seq[Pn], set :List[Pn]) :List[Pn] = {
-    if (!nums.isEmpty)
-      nums.filter(set.last.tail == _.head).projection.map(
-        n => search(nums.filter(_.card != n.card), set+n)).find(Nil.!=).getOrElse(Nil)
-    else if (set.last.tail == set.first.head) set
-    else Nil
+  def search (nums :Seq[Pn], set :List[Pn]) :Option[List[Pn]] = {
+    if (!nums.isEmpty) (for (n <- nums; if (n.ab == set.last.cd);
+                             s <- search(nums filter(_.card != n.card), set :+ n))
+                        yield s) headOption
+    else if (set.last.cd == set.head.ab) Some(set)
+    else None
   }
-
-  val nums = List[(Int) => Pn](square, pent, hex, hept, oct).flatMap(
-    f => 1.to(100).map(f).filter(_.digits == 4))
-  val tris = 1.to(150).map(tri).filter(_.digits == 4)
-  val set = tris.projection.map(t => search(nums, List(t))).find(Nil.!=).get
-  println(set.map(_.value).sum)
+  def sets = for (n <- gen(150)(tri); s <- search(nums, n::Nil)) yield s
+  def answer = (sets head) map(_.value) sum
 }
