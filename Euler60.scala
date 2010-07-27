@@ -5,6 +5,7 @@ object Euler60 extends EulerApp {
           val pi = primes(ii); val pj = primes(jj);
           if (isprime((pi.toString+pj).toInt) && isprime((pj.toString+pi).toInt))
     } yield (pi, pj))
+
   def isset (pset :List[Int], prime :Int) =
     pset.foldLeft(true)((b, a) => b && ppairs((a, prime)))
   def find (pset :List[Int], plist :List[Int]) :Option[List[Int]] = {
