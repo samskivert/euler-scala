@@ -1,4 +1,5 @@
 import scala.io.Source
+import java.io.File
 
 abstract class EulerApp {
   def isprime (n :Int) :Boolean = {
@@ -62,7 +63,7 @@ abstract class EulerApp {
   def readnums (file :String) :List[Int] =
     readline(file).split(',').toList.map(_.toInt)
   def readlines (file :String) :List[String] =
-    Source.fromFile(file).getLines().map(_.stripLineEnd).toList
+    Source.fromFile("data" + File.separator + file).getLines().map(_.stripLineEnd).toList
 
   // computes and returns the solution
   def answer :Any
