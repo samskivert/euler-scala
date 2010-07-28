@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public class Euler23
+public class Euler023
 {
     public static final int MAX = 28123;
 

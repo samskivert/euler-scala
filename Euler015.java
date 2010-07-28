@@ -1,4 +1,4 @@
-public class Euler15
+public class Euler015
 {
     public static final int SIZE = 20;
 

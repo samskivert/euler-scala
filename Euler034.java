@@ -1,4 +1,5 @@
-public class Euler34 {
+public class Euler034
+{
     public static int[] FACTS = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
 
     public static void main (String[] args) {

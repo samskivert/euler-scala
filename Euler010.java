@@ -1,4 +1,4 @@
-public class Euler10
+public class Euler010
 {
     public static final int nextPrimeIndex (boolean[] nonprimes, int start)
     {

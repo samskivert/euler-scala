@@ -1,4 +1,4 @@
-public class Euler26
+public class Euler026
 {
     static int longest;
     static int ldenom;
