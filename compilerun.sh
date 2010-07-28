@@ -9,15 +9,16 @@ if [ ! -d classes ]; then
     mkdir classes
 fi
 
-echo "Compiling Euler$1.scala..."
-scalac -deprecation -d classes EulerApp.scala Euler$1.scala
+printf -v NUM '%03d' $1
+echo "Compiling Euler$NUM.scala..."
+scalac -deprecation -d classes EulerApp.scala Euler$NUM.scala
 if [ $? != 0 ]; then
     exit $?
 fi
 
-echo "Running Euler$1..."
+echo "Running Euler$NUM..."
 TIME_OPTS="-f %E"
 if [ `uname -s` = "Darwin" ]; then
     TIME_OPTS=""
 fi
-time $TIME_OPTS scala -cp classes Euler$1
+time $TIME_OPTS scala -cp classes Euler$NUM
