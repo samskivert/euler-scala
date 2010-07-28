@@ -1,4 +1,4 @@
-object Euler24 extends Application {
+object Euler024 extends Application {
   def fact (n: Int): Int = if (n == 0) 1 else n * fact(n - 1)
   def nthperm (target :Int, nums :List[Int]) :String = {
     if (nums.length == 1) return nums(0).toString;

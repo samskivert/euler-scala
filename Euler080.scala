@@ -1,4 +1,4 @@
-object Euler80 extends EulerApp {
+object Euler080 extends EulerApp {
   def f (p :BigInt, x :Int) = (p*20 + x) * x
   def maxx (c :BigInt, p :BigInt, x :Int) :Int = if (f(p, x) > c) x-1 else maxx(c, p, x+1)
   def root (c :BigInt, p :BigInt, acc :Int, iter :Int) :Int = {

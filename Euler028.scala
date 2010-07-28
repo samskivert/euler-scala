@@ -1,4 +1,4 @@
-object Euler28 extends Application {
+object Euler028 extends Application {
   def spiral (size :Int) :Int = {
     if (size == 1) return 1;
     val smaller = size-2;

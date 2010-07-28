@@ -1,4 +1,4 @@
-object Euler74 {
+object Euler074 {
   val facts = Array(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880);
   def sumfact (n :Int) :Int = if (n == 0) 0 else sumfact(n/10) + facts(n%10)
 

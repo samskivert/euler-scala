@@ -1,4 +1,4 @@
-object Euler54 extends EulerApp {
+object Euler054 extends EulerApp {
   class Card (s :String) {
     val suit :Char = s.charAt(1)
     val rank :Int = "23456789TJQKA".indexOf(s.charAt(0))

@@ -1,4 +1,4 @@
-object Euler93 extends EulerApp {
+object Euler093 extends EulerApp {
   trait Expr { def eval :Float }
   case class Plus (a :Expr, b :Expr) extends Expr { def eval = a.eval + b.eval }
   case class Minus (a :Expr, b :Expr) extends Expr { def eval = a.eval - b.eval }

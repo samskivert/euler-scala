@@ -1,4 +1,4 @@
-object Euler98 extends EulerApp {
+object Euler098 extends EulerApp {
   class Node () {
     var hasChild :Boolean = false
     var hasWord :Boolean = false

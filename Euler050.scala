@@ -1,4 +1,4 @@
-object Euler50 extends EulerApp {
+object Euler050 extends EulerApp {
   case class PSum (sum :Int, length :Int) {
     def add (prime :Int) = PSum(sum+prime, length+1)
   }

@@ -1,4 +1,4 @@
-object Euler39 extends EulerApp {
+object Euler039 extends EulerApp {
   def sols (perim :Int) = perim + 1000 * (for {
     a <- List.range(1, perim/2);
     b <- List.range(1, (perim-a)/2+1);

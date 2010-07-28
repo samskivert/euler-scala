@@ -1,4 +1,4 @@
-object Euler82 extends EulerApp {
+object Euler082 extends EulerApp {
   val matrix = readlines("matrix.txt").map(_.split(",").map(_.toInt)).transpose
   def iter (accum :List[Int], cur :List[Int]) = {
     var col = accum.zip(cur).map(p => p._1+p._2).toArray

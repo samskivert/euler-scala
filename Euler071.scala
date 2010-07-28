@@ -1,4 +1,4 @@
-object Euler71 extends EulerApp {
+object Euler071 extends EulerApp {
   case class Frac (numer :Int, denom :Int) {
     def lessThan (o :Frac) = numer*o.denom < o.numer*denom
   }

@@ -1,4 +1,4 @@
-object Euler17 extends Application {
+object Euler017 extends Application {
   val ones = Array("", "one", "two", "three", "four",
                    "five", "six", "seven", "eight", "nine");
 

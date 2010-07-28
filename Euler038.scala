@@ -1,4 +1,4 @@
-object Euler38 extends Application {
+object Euler038 extends Application {
   def ispan (n :String) = n.toList.sort(_<_).mkString == "123456789";
   println(List.range(9182,9876).reverse.map(n => n+""+(2*n)).filter(ispan).head);
   // or

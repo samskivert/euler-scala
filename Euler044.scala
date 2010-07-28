@@ -1,4 +1,4 @@
-object Euler44 extends Application {
+object Euler044 extends Application {
   def pent (n :Int) = n*(3*n-1)/2
   val pents = Set() ++ List.range(1, 3000).map(pent)
   def find (a :Int, b :Int) :Int = {

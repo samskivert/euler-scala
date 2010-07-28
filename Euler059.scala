@@ -1,4 +1,4 @@
-object Euler59 extends EulerApp {
+object Euler059 extends EulerApp {
   val cipher = readline("cipher1.txt") split(',') map(_.toInt)
   def decode (cipher :Array[Int], key :Array[Char]) =
     (0 until cipher.length) map(ii => cipher(ii) ^ key(ii%key.length))

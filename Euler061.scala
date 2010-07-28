@@ -1,4 +1,4 @@
-object Euler61 extends EulerApp {
+object Euler061 extends EulerApp {
   case class Pn (card :Int, value :Int) {
     def valid = (value < 10000) && (value > 999)
     def ab = value / 100

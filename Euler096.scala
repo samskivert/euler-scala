@@ -1,4 +1,4 @@
-object Euler96 extends EulerApp {
+object Euler096 extends EulerApp {
   def itor (i :Int) = i/9
   def itoc (i :Int) = i%9
   def itos (i :Int) = (itoc(i)/3)*3 + itor(i)/3

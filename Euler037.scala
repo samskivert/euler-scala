@@ -1,4 +1,4 @@
-object Euler37 extends EulerApp {
+object Euler037 extends EulerApp {
   val primes = genprimes(1000000);
   def isrtrunc (prime :Int) :Boolean =
     (prime == 0) || ((primes(prime) != 0) && isrtrunc(prime/10));

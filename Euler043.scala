@@ -1,4 +1,4 @@
-object Euler43 extends Application {
+object Euler043 extends Application {
   def compsum (n :Long, digits :List[Int], divs :List[Int], sum :Long) :Long = {
     if (digits.isEmpty) n + sum
     else (for { d <- digits; val nn = n*10 + d; if ((nn%1000) % divs.head == 0) }

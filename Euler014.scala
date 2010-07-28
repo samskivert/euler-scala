@@ -1,6 +1,6 @@
 import scala.collection.mutable.Map;
 
-object Euler14 extends Application {
+object Euler014 extends Application {
   var seen :Map[Long,Int] = Map();
 
   def iterate (value :Long) :Int = {

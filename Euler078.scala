@@ -1,4 +1,4 @@
-object Euler78 extends EulerApp {
+object Euler078 extends EulerApp {
   def part_mod (n :Int, parts :Array[Int]) = {
     var sign = 1
     for (k <- 1 to Math.sqrt(n)) {

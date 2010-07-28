@@ -1,4 +1,4 @@
-object Euler63 extends EulerApp {
+object Euler063 extends EulerApp {
   def count (n :Int, p :Int, c :Int) :Int =
     if (n == 10) c
     else if (BigInt(n).pow(p).toString.length < p) count(n+1, 1, c)

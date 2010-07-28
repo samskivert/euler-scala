@@ -1,4 +1,4 @@
-object Euler83 extends EulerApp {
+object Euler083 extends EulerApp {
   def min4 (a :Int, b :Int, c :Int, d :Int) = Math.min(Math.min(a, b), Math.min(c, d))
   val matrix = readlines("matrix.txt").map(_.split(",").map(_.toInt)).toArray
   val cs = Array.fill(matrix.length+2, matrix.length+2)(Int.MaxValue)

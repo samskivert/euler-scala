@@ -1,4 +1,4 @@
-object Euler25 extends Application {
+object Euler025 extends Application {
   var prev2 :BigInt = 1;
   var prev1 :BigInt = 1;
   var value :BigInt = prev2 + prev1;

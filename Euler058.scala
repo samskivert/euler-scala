@@ -1,4 +1,4 @@
-object Euler58 extends EulerApp {
+object Euler058 extends EulerApp {
   def checkring (r :Int, primes :Int, nums :Int) :Int = {
     if (primes*10/nums < 1) 2*r-1
     else {

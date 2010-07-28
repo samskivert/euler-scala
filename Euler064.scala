@@ -1,4 +1,4 @@
-object Euler64 extends EulerApp {
+object Euler064 extends EulerApp {
   case class Root (root :Int, add :Int, div :Int) {
     def expand = {
       val term = ((Math.sqrt(root.toDouble) + add)/div).toInt

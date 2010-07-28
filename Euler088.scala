@@ -1,5 +1,5 @@
 import scala.collection.mutable.Map
-object Euler88 extends EulerApp {
+object Euler088 extends EulerApp {
   def minprodsum (mins :Array[Int], n :Int, p :Int, s :Int, l :Int) {
     val np = p * n
     val k = np - (s+n) + (l+1)

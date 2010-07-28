@@ -1,4 +1,4 @@
-object Euler7 extends Application {
+object Euler007 extends Application {
   var numbers = List.range(2,110000);
   var primes = List(2);
   while (primes.length < 10001) {

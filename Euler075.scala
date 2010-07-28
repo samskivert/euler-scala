@@ -1,4 +1,4 @@
-object Euler75 extends EulerApp {
+object Euler075 extends EulerApp {
   val Max = 2000000
   val tris = new Array[Int](Max+1)
   for (m <- 2.to(1000); n <- 1.to(m-1)) {

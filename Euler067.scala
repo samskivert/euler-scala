@@ -1,4 +1,4 @@
-object Euler67 extends EulerApp {
+object Euler067 extends EulerApp {
   val tri = readlines("triangle.txt").map(_.split(" ").map(_.toInt).toList).reverse
   def fold (acc :List[Int], tri :List[List[Int]]) :Int = {
     if (acc.length == 1) acc(0)

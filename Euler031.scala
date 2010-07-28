@@ -1,4 +1,4 @@
-object Euler31 extends EulerApp {
+object Euler031 extends EulerApp {
   def perms (remain :Int, coins :List[Int]) :Int =
     if (remain == 0) 1 else coins match {
       case Nil => 0

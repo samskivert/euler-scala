@@ -1,4 +1,4 @@
-object Euler70 extends EulerApp {
+object Euler070 extends EulerApp {
   val range = Math.sqrt(10000000)/2
   val primes = genprimes(3*range).filter(range.<)
   val nums = for {

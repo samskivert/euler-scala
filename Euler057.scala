@@ -1,4 +1,4 @@
-object Euler57 extends EulerApp {
+object Euler057 extends EulerApp {
   case class Frac (numer :BigInt, denom :BigInt) {
     def add (n :BigInt) = Frac(n * denom + numer, denom)
     def invert = Frac(denom, numer)

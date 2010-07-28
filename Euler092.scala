@@ -1,4 +1,4 @@
-object Euler92 extends EulerApp {
+object Euler092 extends EulerApp {
   def digsq (n :Int, acc :Int) :Int = if (n == 0) acc else digsq(n/10, acc + (n%10)*(n%10))
   val sqcache = scala.collection.mutable.Map(1 -> 1)
   def fixpsq (n :Int) :Int = sqcache.getOrElseUpdate(

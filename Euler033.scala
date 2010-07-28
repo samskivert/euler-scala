@@ -1,4 +1,4 @@
-object Euler33 extends Application {
+object Euler033 extends Application {
   def equal (ratio :Double, rnum :Int, rdenom :Int) :Boolean = {
     (rdenom > 0) && (ratio == rnum/rdenom.doubleValue());
   }

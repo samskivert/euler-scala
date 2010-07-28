@@ -1,4 +1,4 @@
-object Euler62 extends EulerApp {
+object Euler062 extends EulerApp {
   val cubes = new scala.collection.mutable.HashMap[Long,List[Long]]
   def search (n :Long) :Long = {
     val cube = n*n*n

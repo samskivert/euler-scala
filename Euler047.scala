@@ -1,4 +1,4 @@
-object Euler47 extends Application {
+object Euler047 extends Application {
   val factors = Array.make(150000, 0)
   var idx = 2
   while (idx < factors.length) {

@@ -1,4 +1,4 @@
-object Euler81 extends EulerApp {
+object Euler081 extends EulerApp {
   val matrix = readlines("matrix.txt").map(_.split(",").map(_.toInt))
   for (y <- 1 until matrix.length) matrix(y)(0) += matrix(y-1)(0)
   for (x <- 1 until matrix.length) matrix(0)(x) += matrix(0)(x-1)

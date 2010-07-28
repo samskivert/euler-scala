@@ -1,4 +1,4 @@
-object Euler60 extends EulerApp {
+object Euler060 extends EulerApp {
   val primes = genprimes(10000) filter(0.!=)
   val ppairs = Set() ++
     (for { ii <- 0 until primes.length-1; jj <- ii until primes.length;

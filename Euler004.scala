@@ -1,4 +1,4 @@
-object Euler4 extends Application 
+object Euler004 extends Application 
 {
   def palindrome (value :String) :Boolean = {
     val half :Int = value.length()/2;

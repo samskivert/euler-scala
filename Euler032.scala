@@ -1,4 +1,4 @@
-object Euler32 extends Application {
+object Euler032 extends Application {
   def digits (n :Int) = n.toString.toList.map(c => c - '0');
   def ispan (a :Int, b :Int, n :Int) :Boolean =
     (digits(a) ::: digits(n) ::: digits(b)).sort(_<_).equals(List.range(1,10));

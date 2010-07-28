@@ -1,4 +1,4 @@
-object Euler27 extends EulerApp {
+object Euler027 extends EulerApp {
   val MAX_N = 80;
   val primes = genprimes(MAX_N*MAX_N + MAX_N*1000 + 1000);
   def polyprimes (primes :Array[Int], a :Int, b :Int, n :Int) :Int =

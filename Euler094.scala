@@ -1,4 +1,4 @@
-object Euler94 extends EulerApp {
+object Euler094 extends EulerApp {
   val MAX = 1000000000L/3
   def check (a :Double, b :Double) :Long = {
     val area = b * math.sqrt(a*a - b*b)

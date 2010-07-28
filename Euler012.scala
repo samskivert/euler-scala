@@ -1,4 +1,4 @@
-object Euler12 extends Application {
+object Euler012 extends Application {
   def findnum (i :Int, x :Int) :Int = {
     val divs = List.range(1, Math.sqrt(x)).filter(n => x % n == 0).flatMap(
       n => List(n, x/n).removeDuplicates);

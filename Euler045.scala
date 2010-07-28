@@ -1,4 +1,4 @@
-object Euler45 extends Application {
+object Euler045 extends Application {
   def findh (pent :Long, h :Long) :Long = {
     val hex = h*(2*h-1)
     if (hex > pent) findh(pent, h-1)

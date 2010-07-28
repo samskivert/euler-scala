@@ -1,4 +1,4 @@
-object Euler73 extends EulerApp {
+object Euler073 extends EulerApp {
   val primes = genprimes(Math.sqrt(10000)).filter(0.!=)
   def iscoprime (denom :Int) = {
     val pfacts = primefacts(primes, denom)

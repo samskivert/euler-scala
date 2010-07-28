@@ -1,4 +1,4 @@
-object Euler87 extends EulerApp {
+object Euler087 extends EulerApp {
   val primes = genprimes(7071).filter(_!=0)
   val ns = for (a <- primes; // 7071 = 2rt(50m)
                 b <- primes.takeWhile(_ < 368); // 3rt(50m)

@@ -1,4 +1,4 @@
-object Euler95 extends EulerApp {
+object Euler095 extends EulerApp {
   def follow (sums :Array[Int], start :Int, chain :List[Int]) :List[Int] = {
     val next = sums(chain.head)
     if (next >= sums.length) Nil

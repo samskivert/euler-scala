@@ -1,4 +1,4 @@
-object Euler49 extends EulerApp {
+object Euler049 extends EulerApp {
   def sort (n :Int) = n.toString.toList.sort(_<_).mkString.toInt
   def ismem (n :Int, nn :Int) = isprime(nn) && sort(nn) == sort(n)
   def isseq (n :Int) = ismem(n, n+3330) && ismem(n, n+6660)

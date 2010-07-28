@@ -1,4 +1,4 @@
-object Euler19 extends Application {
+object Euler019 extends Application {
   def norm (days :Int) :Function1[Int,Int] = ((year :Int) => (days));
   def leap (days :Int) :Function1[Int,Int] = ((year :Int) => {
     if ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)) days+1;

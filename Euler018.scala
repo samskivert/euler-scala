@@ -1,4 +1,4 @@
-object Euler18 extends Application {
+object Euler018 extends Application {
   val triangle = List(
      4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23,
       63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31,

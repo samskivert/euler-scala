@@ -1,6 +1,6 @@
 import scala.collection.mutable.Set
 
-object Euler23 {
+object Euler023 {
   def divisors (x :Int) = Set(1) ++
     (2 to (math.sqrt(x).toInt) filter(x%_ == 0) flatMap(n => List(n, x/n)))
 

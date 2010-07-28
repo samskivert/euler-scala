@@ -1,4 +1,4 @@
-object Euler77 extends EulerApp {
+object Euler077 extends EulerApp {
   val smap = new scala.collection.mutable.HashMap[Pair[Int, Int],Int]
   def sums (n :Int, max :Int) :Int = smap.getOrElseUpdate((n, max), {
     def isok (n :Int) = n <= max && n > 1 && isprime(n)

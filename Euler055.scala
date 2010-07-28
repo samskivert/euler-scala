@@ -1,4 +1,4 @@
-object Euler55 extends EulerApp {
+object Euler055 extends EulerApp {
   def ispal (n :String) = n.take(n.length/2) == n.takeRight(n.length/2).reverse
   def islychrel (n :BigInt, iter :Int = 0) :Int =
     if (iter > 0 && ispal(n.toString)) 0

@@ -1,5 +1,5 @@
 import scala.util.Random
-object Euler84 extends EulerApp {
+object Euler084 extends EulerApp {
   def goto (pos :Int) = (_ :Int) => pos
   def back (steps :Int) = (pos :Int) => pos-steps
   val nextrr = (pos :Int) => ((((pos + 5) / 10) * 10) + 5) % 40

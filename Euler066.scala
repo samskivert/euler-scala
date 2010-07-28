@@ -1,4 +1,4 @@
-object Euler66 extends EulerApp {
+object Euler066 extends EulerApp {
   val maxx = Math.sqrt(Math.MAX_LONG).toLong
   println("MAX " + maxx)
   def solve (d :Int, x :Int) :Pair[Int,Int] = {

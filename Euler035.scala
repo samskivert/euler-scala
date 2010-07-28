@@ -1,4 +1,4 @@
-object Euler35 extends EulerApp {
+object Euler035 extends EulerApp {
   val primes = genprimes(1000000);
   def digits (value :Int) :Int = if (value == 0) 0 else 1 + digits(value/10);
   def rotate (value :Int, turns :Int) :Int = {

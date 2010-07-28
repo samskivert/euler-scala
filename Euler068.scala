@@ -1,4 +1,4 @@
-object Euler68 extends EulerApp {
+object Euler068 extends EulerApp {
   class Ngon (vals :Seq[Int]) {
     protected val size = vals.length/2
     val total = line(0).sum

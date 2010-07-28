@@ -1,4 +1,4 @@
-object Euler86 extends EulerApp {
+object Euler086 extends EulerApp {
   def search (target :Int, h :Int, c :Int) :Int = {
     var nc = c
     for (w <- 1 to h; d <- w to h) {

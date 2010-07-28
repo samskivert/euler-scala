@@ -1,4 +1,4 @@
-object Euler90 extends EulerApp {
+object Euler090 extends EulerApp {
   def augment (cube :Set[Int]) = if (cube(6) || cube(9)) cube+6+9 else cube
   val cubes = for (a <- 0 to 9; b <- a+1 to 9; c <- b+1 to 9; d <- c+1 to 9;
                    e <- d+1 to 9; f <- e+1 to 9) yield augment(Set(a, b, c, d, e, f))
