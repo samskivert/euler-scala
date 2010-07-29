@@ -14,13 +14,10 @@ object Euler061 extends EulerApp {
   def gen (max :Int)(gen :(Int) => Pn) = (1 to max) map(gen) filter(_.valid)
   val nums = List(square _, pent _, hex _, hept _, oct _) flatMap(gen(100))
 
-  def search (nums :Seq[Pn], set :List[Pn]) :Option[List[Pn]] = {
-    if (!nums.isEmpty) (for (n <- nums; if (n.ab == set.last.cd);
-                             s <- search(nums filter(_.card != n.card), set :+ n))
-                        yield s) headOption
-    else if (set.last.cd == set.head.ab) Some(set)
-    else None
-  }
-  def sets = for (n <- gen(150)(tri); s <- search(nums, n::Nil)) yield s
+  def search (nums :Seq[Pn], set :List[Pn]) :Option[List[Pn]] =
+    if (nums.isEmpty) Some(set) filter(x => x.last.cd == x.head.ab)
+    else (nums filter(_.ab == set.last.cd) map(
+      n => search(nums filter(_.card != n.card), set :+ n)) flatten) headOption
+  def sets = gen(150)(tri) map(n => search(nums, n::Nil)) flatten
   def answer = (sets head) map(_.value) sum
 }
