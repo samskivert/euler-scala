@@ -29,11 +29,10 @@ object Euler101 extends EulerApp {
   }
   def solve (eqs :List[Eq]) = loop(eqs, Nil) map(_.terms.head.const.toLong)
 
-  def gen (terms :Int, f :Int => Long) = 1 to terms map(
-    n => Eq((0 until terms).map(
-      i => Term(math.pow(n, i).toLong, i)) :+ Term(-f(n), -1))) toList
+  def gen (terms :Int, f :Int => Long) = List.range(1, terms+1) map(
+    n => Eq((0 until terms map(i => Term(math.pow(n, i).toLong, i))) :+ Term(-f(n), -1)))
   def eval (coefs :List[Long], x :Int) =
-    (0L /: coefs.zipWithIndex)((v, p) => v + p._1*math.pow(x, p._2).toLong)
-  def u (n :Int) = Array.fill(10)(n).scanLeft(1L)(-_*_).sum
+    (0L /: coefs.zipWithIndex)((v, p) => v + p._1 * math.pow(x, p._2).toLong)
+  def u (n :Int) = List.fill(10)(n).scanLeft(1L)(-_*_).sum
   def answer = 1 to 10 map(n => solve(gen(n, u))) map(c => eval(c, c.length+1)) sum
 }
