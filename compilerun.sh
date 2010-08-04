@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -z "$1" ]; then
     echo "Usage: $0 N"
@@ -17,8 +17,4 @@ if [ $? != 0 ]; then
 fi
 
 echo "Running Euler$NUM..."
-TIME_OPTS="-f %E"
-if [ `uname -s` = "Darwin" ]; then
-    TIME_OPTS=""
-fi
-time $TIME_OPTS scala -cp classes Euler$NUM
+time scala -cp classes Euler$NUM
