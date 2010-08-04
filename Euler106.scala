@@ -8,5 +8,5 @@ object Euler106 extends EulerApp {
   def check (str :String) =
     (1 to str.length/2).foldLeft(str)((b, a) => b.replace("ab", "")).length > 0
   def count (l :Int) = 2 to l/2  map(n => gen(n-1, n, "a").filter(check).size * choose(l, l-2*n))
-  def answer = count(12)
+  def answer = count(12) sum
 }
