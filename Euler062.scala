@@ -1,11 +1,10 @@
 object Euler062 extends EulerApp {
-  val cubes = new scala.collection.mutable.HashMap[Long,List[Long]]
-  def search (n :Long) :Long = {
+  def search (n :Long, cubes :Map[Long,List[Long]]) :Long = {
     val cube = n*n*n
-    val key = cube.toString.toList.sort(_>_).mkString.toLong
-    val perms = cubes.put(key, cubes.get(key).getOrElse(Nil) + cube).getOrElse(Nil)
-    if (perms.length == 4) perms.head
-    else search(n+1)
+    val key = cube.toString.sortWith(_>_).toLong
+    val perms = cube :: cubes.getOrElse(key, Nil)
+    if (perms.length == 5) perms.last
+    else search(n+1, cubes + (key -> perms))
   }
-  println(search(1))
+  def answer = search(1, Map())
 }
