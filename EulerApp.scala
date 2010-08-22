@@ -47,11 +47,9 @@ abstract class EulerApp {
   def primefacts (primes :Iterable[Int], n :Int) = {
     var facts :List[Int] = Nil
     var curn = n
-    for (p <- primes.takeWhile(p => p*p <= n)) {
-      if (curn % p == 0) {
-        facts = p :: facts
-        do curn = curn / p while (curn % p == 0)
-      }
+    for (div <- primes takeWhile(p => p*p <= n) filter(curn % _ == 0)) {
+      facts = div :: facts
+      do curn = curn / div while (curn % div == 0)
     }
     if (curn == 1) facts else curn :: facts
   }
