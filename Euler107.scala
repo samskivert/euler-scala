@@ -7,7 +7,7 @@ object Euler107 extends EulerApp {
     }
     loop(matrix.head, Set(0)).size == matrix.size
   }
-  val network = readlines("network.txt") map(_ split(",") map(_.toInt))
+  val network = readlines("network.txt") map(_ split(",") map(_.replace('-','0')) map(_.toInt))
   val edges = network.zipWithIndex flatMap(
     r => r._1.zipWithIndex filter(c => c._1 != 0 && c._2 > r._2) map(c => (c._1, r._2, c._2)))
   def answer = {
