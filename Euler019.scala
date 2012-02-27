@@ -1,15 +1,12 @@
-object Euler019 extends Application {
-  def norm (days :Int) :Function1[Int,Int] = ((year :Int) => (days));
-  def leap (days :Int) :Function1[Int,Int] = ((year :Int) => {
-    if ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)) days+1;
-    else days;
-  });
-  val length = Array(norm(31), leap(28), norm(31), norm(30), norm(31), norm(30),
-                     norm(31), norm(31), norm(30), norm(31), norm(30), norm(31));
-
-  println((for (year <- List.range(1900, 2001); month <- List.range(0, 12))
-           yield Pair(year, month)).foldLeft(Pair(0, 0))(
-             (acc :Pair[Int,Int], cur :Pair[Int,Int]) => (
-               Pair(if (cur._1 > 1900 && acc._2 % 7 == 6) 1+acc._1 else acc._1,
-                    acc._2 + length(cur._2)(cur._1))))._1);
+object Euler019 extends EulerApp {
+  def cnst (days :Int) = (_ :Int) => days
+  val leapfeb = (year :Int) =>
+    if ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)) 29 else 28
+  val mdays = Array(cnst(31), leapfeb,  cnst(31), cnst(30), cnst(31), cnst(30),
+                    cnst(31), cnst(31), cnst(30), cnst(31), cnst(30), cnst(31))
+  val yearmos = for (year <- (1900 to 2000); month <- (0 to 11)) yield (year, month)
+  def answer = (((0, 0) /: yearmos) {
+    case ((suns, days), (year, month)) =>
+      (if (year > 1900 && days % 7 == 6) suns+1 else suns, days + mdays(month)(year))
+  })._1
 }

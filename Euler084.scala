@@ -54,5 +54,5 @@ object Euler084 extends EulerApp {
     }
     hits
   }
-  println(compute.zipWithIndex.sortBy(_._1).reverse.take(3).map(_._2).mkString)
+  def answer = compute.zipWithIndex.sortBy(_._1).reverse.take(3).map(_._2).mkString
 }

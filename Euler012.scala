@@ -1,9 +1,8 @@
-object Euler012 extends Application {
+object Euler012 extends EulerApp {
   def findnum (i :Int, x :Int) :Int = {
-    val divs = List.range(1, Math.sqrt(x)).filter(n => x % n == 0).flatMap(
-      n => List(n, x/n).removeDuplicates);
-    if (divs.length > 500) return x;
-    else return findnum(i+1, x+i);
+    val divs = (1 to math.sqrt(x).toInt).filter(x % _ == 0).flatMap(n => List(n, x/n).distinct)
+    if (divs.length > 500) x
+    else findnum(i+1, x+i)
   }
-  println(findnum(1, 0));
+  def answer = findnum(1, 0)
 }

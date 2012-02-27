@@ -1,4 +1,4 @@
-object Euler017 extends Application {
+object Euler017 extends EulerApp {
   val ones = Array("", "one", "two", "three", "four",
                    "five", "six", "seven", "eight", "nine");
 
@@ -30,5 +30,5 @@ object Euler017 extends Application {
     }
   }
 
-  println(List.range(1, 1001).foldRight(0) { (a, b) => (b + speak(a).length) });
+  def answer = List.range(1, 1001).foldRight(0) { (a, b) => (b + speak(a).length) }
 }

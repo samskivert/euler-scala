@@ -1,4 +1,4 @@
-object Euler013 extends Application {
+object Euler013 extends EulerApp {
   val data = List("37107287533902102798797998220837590246510135740250",
                   "46376937677490009712648124896970078050417018260538",
                   "74324986199524741059474233309513058123726617309629",
@@ -98,37 +98,13 @@ object Euler013 extends Application {
                   "77158542502016545090413245809786882778948721859617",
                   "72107838435069186155435662884062257473692284509516",
                   "20849603980134001723930671666823555245252804609722",
-                  "53503534226472524250874054075591789781264330331690");
-
-  def toList (number :String) :List[Int] = {
-    number.toList.map((c) => (c - '0'));
-  }
-
-  def toNumber (list :List[Int]) :Long = {
-    list.foldLeft(0L)((a :Long, b :Int) => a*10 + b)
-  }
-
-  def sumTens (numbers :List[List[Int]]) :List[Int] = {
-    var sum = 0;
-    for (number <- numbers) {
-      if (number.length > 0) {
-        sum = sum + number.last;
-      }
-    }
-    return toList(sum.toString());
-  }
-
-  def rightShift (numbers :List[List[Int]]) :List[List[Int]] = {
-    numbers.map((list) => list.slice(0, list.length-1))
-  }
-
-  def sum (numbers :List[List[Int]]) :Long = {
-    if (numbers.last.length < 9) {
-      numbers.foldLeft(0L)((a :Long, b :List[Int]) => a + toNumber(b))
-    } else {
-      sum(rightShift(sumTens(numbers) :: numbers));
-    }
-  }
-
-  println(sum(data.map((n) => toList(n))));
+                  "53503534226472524250874054075591789781264330331690")
+  def toList (number :String) = number.toList.map(_  - '0')
+  def toNumber (list :List[Int]) :Long = (0L /: list)((a, b) => a*10 + b)
+  def sumTens (numbers :List[List[Int]]) =
+    toList((numbers filter(!_.isEmpty) map(_.last) sum).toString)
+  def sum (numbers :List[List[Int]]) :Long =
+    if (numbers.last.length < 9) numbers.foldLeft(0L)((a, b) => a + toNumber(b))
+    else sum((sumTens(numbers) :: numbers).map(_.dropRight(1)))
+  def answer = sum(data.map(toList))
 }

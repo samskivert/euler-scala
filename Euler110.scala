@@ -5,5 +5,5 @@ object Euler110 extends EulerApp {
     if (sols > 4000000) base.map(_.toLong).product * m
     else find(base, m+1)
   }
-  def answer = find(primes.take(12), 2)
+  def answer = find(primegen.take(12), 2)
 }

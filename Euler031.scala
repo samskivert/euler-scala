@@ -4,5 +4,5 @@ object Euler031 extends EulerApp {
       case Nil => 0
       case h::t => 0 to (remain/h) map(q => perms(remain - q*h, t)) sum
     }
-  println(perms(200, List(200, 100, 50, 20, 10, 5, 2, 1)))
+  def answer = perms(200, List(200, 100, 50, 20, 10, 5, 2, 1))
 }

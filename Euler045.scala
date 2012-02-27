@@ -1,4 +1,4 @@
-object Euler045 extends Application {
+object Euler045 extends EulerApp {
   def findh (pent :Long, h :Long) :Long = {
     val hex = h*(2*h-1)
     if (hex > pent) findh(pent, h-1)
@@ -11,5 +11,5 @@ object Euler045 extends Application {
     else if (pent < tri) 0
     else findh(pent, p-1)
   }
-  println(Stream.from(286).map(t => findp(t.toLong*(t+1)/2, t-1)).find(0.!=).get)
+  def answer = Stream.from(286).map(t => findp(t.toLong*(t+1)/2, t-1)).find(_ != 0).get
 }

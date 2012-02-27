@@ -1,4 +1,4 @@
-object Euler008 extends Application {
+object Euler008 extends EulerApp {
   val number = ("73167176531330624919225119674426574742355349194934" +
                 "96983520312774506326239578318016984801869478851843" +
                 "85861560789112949495459501737958331952853208805511" +
@@ -18,10 +18,8 @@ object Euler008 extends Application {
                 "07198403850962455444362981230987879927244284909188" +
                 "84580156166097919133875499200524063689912560717606" +
                 "05886116467109405077541002256983155200055935729725" +
-                "71636269561882670428252483600823257530420752963450");
-  val WINDOW = 5;
-  def prod5 (offset :Int) :Int = {
-    number.slice(offset, offset+WINDOW).toList.map((c) => (c - '0')).foldLeft(1)(_*_)
-  }
-  println(List.range(0, number.length-WINDOW).foldRight(0)((o, g) => (Math.max(g, prod5(o)))))
+                "71636269561882670428252483600823257530420752963450").map(_ - '0')
+  val WINDOW = 5
+  def prod5 (off :Int) = number slice(off, off+WINDOW) product
+  def answer = 0 until number.length-WINDOW map(prod5) max
 }

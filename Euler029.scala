@@ -1,6 +1,4 @@
-object Euler029 extends Application {
-  println((for {
-    a <- List.range(2, 101)
-    b <- List.range(2, 101)
-  } yield BigInt(a).pow(b)).removeDuplicates.length);
+object Euler029 extends EulerApp {
+  def answer = (for (a <- 2 to 101; b <- 2 to 101)
+                yield BigInt(a).pow(b)).distinct.length
 }

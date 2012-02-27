@@ -5,5 +5,5 @@ object Euler039 extends EulerApp {
     c <- List(perim-a-b);
     if (a*a + b*b == c*c)
   } yield 1).length;
-  println(List.range(3, 1000).map(sols).max % 1000);
+  def answer = List.range(3, 1000).map(sols).max % 1000
 }

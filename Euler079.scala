@@ -7,5 +7,5 @@ object Euler079 extends EulerApp {
       case Some(fc) => find(codes.map(pop(fc)).filterNot(_.isEmpty), code + fc)
     }
   }
-  println(find(readlines("keylog.txt"), ""))
+  def answer = find(readlines("keylog.txt"), "")
 }

@@ -35,25 +35,29 @@ abstract class EulerApp {
     true
   }
 
-  /** Generates an array containing primes < `range`.
-   *  Filter with `r.filter(0.!=)` to extract just the primes. */
-  def genprimes (range :Int) :Array[Int] = {
+  /** Generates an array `[0, range)` where non-prime elements contain 0 and prime elements contain
+   * the (prime) value. */
+  def genprimevec (range :Int) :Array[Int] = {
     val primes = Array.range(0, range)
     primes(1) = 0
     var idx = 2
     while (idx < range) {
-      for (midx <- List.range(idx+idx, primes.length, idx)) primes(midx) = 0
+      var midx = idx+idx
+      while (midx < range) { primes(midx) = 0; midx += idx }
       do idx = idx+1
       while (idx < range && primes(idx) == 0)
     }
     return primes
   }
 
+  /** Generates an array containing primes < `range`. */
+  def genprimes (range :Int) = genprimevec(range) filter(_ != 0)
+
   /** Returns the greatest common divisor of `n` and `d`. */
   def gcd (n :Int, d :Int) :Int = if (d == 0) n else gcd(d, n%d)
 
   /** Generates a stream of primes. */
-  def primes = {
+  def primegen = {
     def from (n: Int): Stream[Int] = Stream.cons(n, from(n + 1))
     def sieve (s: Stream[Int]): Stream[Int] =
       Stream.cons(s.head, sieve(s.tail filter { _ % s.head != 0 }))
@@ -79,7 +83,7 @@ abstract class EulerApp {
       else if (n > p) loop(n, primes.tail, facts)
       else facts
     }
-    loop(n, primes, Nil)
+    loop(n, primegen, Nil)
   }
 
   /** Reads the first line from the supplied source file. */

@@ -9,5 +9,5 @@ object Euler075 extends EulerApp {
       }
     }
   }
-  println(tris.filter(1.==).length)
+  def answer = tris.filter(1.==).length
 }

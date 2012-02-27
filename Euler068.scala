@@ -7,15 +7,15 @@ object Euler068 extends EulerApp {
     protected def line (n :Int) = List(vals(n), vals(size+n), vals(size+(n+1)%size))
   }
 
-  def makegons (vals :List[Int], digits :List[Int]) :List[Ngon] = {
-    if (digits == Nil) {
+  def makegons (vals :Seq[Int], digits :Seq[Int]) :Seq[Ngon] = {
+    if (digits.isEmpty) {
       val ngon = new Ngon(vals)
-      if (ngon.valid) ngon :: Nil else Nil
+      if (ngon.valid) Seq(ngon) else Seq()
     } else {
       val ndigits = if (vals.length < digits.length) digits.filter(vals(0).<) else digits
-      ndigits.flatMap(d => makegons(vals + d, digits.filter(d.!=)))
+      ndigits.flatMap(d => makegons(vals :+ d, digits.filterNot(_ == d)))
     }
   }
-  def ngons (size :Int, n :Int) = makegons(List(n), 1.to(size).toList.reverse-n)
-  println(8.to(1).by(-1).flatMap(n => ngons(10, n)).first)
+  def ngons (size :Int)(n :Int) = makegons(Seq(n), (1 to size).reverse.filterNot(_ == n))
+  def answer = 8 to 1 by -1 flatMap(ngons(10)) head
 }

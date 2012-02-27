@@ -15,8 +15,5 @@ object Euler074 {
     else if (chain.indexOf(next) >= 0) memoize(chain, 1)
     else compute(next :: chain)
   }
-
-  def main (args :Array[String]) :Unit = {
-    println(1.until(1000000).map(n => compute(n :: Nil)).filter(60.==).length)
-  }
+  def answer = 1.until(1000000).map(n => compute(n :: Nil)).filter(60.==).length
 }

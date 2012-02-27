@@ -45,5 +45,5 @@ object Euler054 extends EulerApp {
     (new Hand(cards.take(5)), new Hand(cards.drop(5)))
   }
 
-  println(readlines("poker.txt").map(toHands).filter(p => p._1.rank > p._2.rank).length)
+  def answer = readlines("poker.txt").map(toHands).filter(p => p._1.rank > p._2.rank).length
 }

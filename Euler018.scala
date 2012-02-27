@@ -1,4 +1,4 @@
-object Euler018 extends Application {
+object Euler018 extends EulerApp {
   val triangle = List(
      4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23,
       63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31,
@@ -22,9 +22,9 @@ object Euler018 extends Application {
       return max(0);
     } else {
       return fold(triangle.drop(max.length-1), List.range(0, max.length-1).map(
-        (i) => (triangle(i) + Math.max(max(i), max(i+1)))));
+        (i) => (triangle(i) + math.max(max(i), max(i+1)))));
     }
   }
-  var base = (Math.sqrt(1+8*triangle.length) - 1) / 2; // 15
-  println(fold(triangle.drop(base), triangle.slice(0, base)));
+  var base = (math.sqrt(1+8*triangle.length) - 1).toInt / 2; // 15
+  def answer = fold(triangle.drop(base), triangle.slice(0, base))
 }

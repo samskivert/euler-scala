@@ -5,5 +5,5 @@ object Euler108 extends EulerApp {
     if (sols > 1000) base.product * m
     else find(base, m+1)
   }
-  def answer = find(primes.take(6), 2)
+  def answer = find(primegen.take(6), 2)
 }

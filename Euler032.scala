@@ -1,8 +1,7 @@
-object Euler032 extends Application {
-  def digits (n :Int) = n.toString.toList.map(c => c - '0');
-  def ispan (a :Int, b :Int, n :Int) :Boolean =
-    (digits(a) ::: digits(n) ::: digits(b)).sort(_<_).equals(List.range(1,10));
-  def haspanfact (n :Int) :Boolean =
-    List.range(2, 100).find((a) => (n % a == 0 && ispan(a, n/a, n))) != None;
-  println(List.range(1000, 10000).filter(haspanfact).foldRight(0)(_+_));
+object Euler032 extends EulerApp {
+  def digits (n :Int) = n.toString.map(_ - '0')
+  def ispan (a :Int, b :Int, n :Int) =
+    (digits(a) ++ digits(n) ++ digits(b)).sortWith(_<_) == (1 to 9)
+  def haspanfact (n :Int) = (2 until 100) exists(a => (n % a == 0 && ispan(a, n/a, n)))
+  def answer = 1000 until 10000 filter(haspanfact) sum
 }

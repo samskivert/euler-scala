@@ -1,26 +1,14 @@
-import scala.collection.mutable.Map;
-
-object Euler014 extends Application {
-  var seen :Map[Long,Int] = Map();
-
-  def iterate (value :Long) :Int = {
-    val seenlen :Option[Int] = seen.get(value);
-    if (seenlen != None) {
-      return seenlen.get;
-    } else if (value == 1) {
-      return 1;
-    } else if (value % 2 == 0) {
-      val newlen = iterate(value/2)+1;
-      seen.put(value, newlen);
-      return newlen;
-    } else {
-      val newlen = iterate(3*value+1)+1;
-      seen.put(value, newlen);
-      return newlen;
+object Euler014 extends EulerApp {
+  def answer = {
+    var chain = new scala.collection.mutable.HashMap[Long,Int] {
+      override def default (value :Long) = {
+        val n = if (value == 1) 1
+                else if (value % 2 == 0) apply(value/2)+1
+                else apply(3*value+1)+1
+        put(value, n)
+        n
+      }
     }
+    (1L until 1000000 map(n => (n, chain(n))) maxBy(_._2))._1
   }
-
-  var longest = List.range(1, 1000000).map((n) => (Pair(n, iterate(n)))).foldLeft(Pair(0, 0))(
-    (lpair, pair) => (if (lpair._2 > pair._2) lpair else pair));
-  println(longest._1);
 }

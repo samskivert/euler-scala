@@ -3,5 +3,5 @@ object Euler041 extends EulerApp {
     case Nil => n.mkString.toInt :: Nil
     case _ => d.flatMap(digit => perms(d.filter(digit.!=), digit :: n))
   }
-  println(perms("1234567".toList, Nil).filter(isprime).max)
+  def answer = perms("1234567".toList, Nil).filter(isprime).max
 }

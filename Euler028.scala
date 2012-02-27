@@ -1,8 +1,8 @@
-object Euler028 extends Application {
+object Euler028 extends EulerApp {
   def spiral (size :Int) :Int = {
-    if (size == 1) return 1;
-    val smaller = size-2;
-    spiral(smaller) + 4*(smaller*smaller) + (1+2+3+4)*(smaller+1);
+    val smaller = size-2
+    if (size == 1) 1
+    else spiral(smaller) + 4*(smaller*smaller) + (1+2+3+4)*(smaller+1)
   }
-  println(spiral(1001));
+  def answer = spiral(1001)
 }

@@ -3,8 +3,6 @@ object Euler051 extends EulerApp {
     val variants = "0123456789".toList.map(nd => n.replace(d, nd))
     variants.filter(!_.startsWith("0")).map(Integer.parseInt).filter(isprime).length
   }
-  def count (prime :String) = {
-    prime.toList.removeDuplicates.map(cprimes(prime)).reduceRight(Math.max)
-  }
-  println(genprimes(150000).filter(0.!=).find(p => count(p.toString) > 7).get)
+  def count (prime :String) = prime.toSet.map(cprimes(prime)).max
+  def answer = genprimes(150000).find(p => count(p.toString) > 7).get
 }

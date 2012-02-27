@@ -6,7 +6,7 @@ object EulerGen {
   def main (args :Array[String]) {
     if (args.length == 0) {
       println("Usage: EulerGen N");
-      exit(255);
+      sys.exit(255);
     }
 
     val n :Int = Integer.valueOf(args(0)).intValue();
@@ -14,7 +14,7 @@ object EulerGen {
     val file = new File(name);
     if (file.exists()) {
       println(name + " already exists.");
-      exit(255);
+      sys.exit(255);
     }
 
     println("Generating " + name + "...");

@@ -12,9 +12,7 @@ object Euler023 {
     else filter(abund, ints, a, b+1)
   }
 
-  def main (args :Array[String]) {
-    val MAX = 28123
-    val abundant = 1 until MAX filter(a => (a < divisors(a).sum)) toArray
-    println(filter(abundant, Set() ++ List.range(1, MAX+1), 0, 0).sum)
-  }
+  val MAX = 28123
+  val abundant = 1 until MAX filter(a => (a < divisors(a).sum)) toArray
+  def answer = filter(abundant, Set() ++ List.range(1, MAX+1), 0, 0).sum
 }

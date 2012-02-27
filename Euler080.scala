@@ -8,5 +8,5 @@ object Euler080 extends EulerApp {
     else if (iter == 99) acc+x
     else root((c - y) * 100, p*10 + x, acc+x, iter+1)
   }
-  println((2 to 100).map(n => root(n, 0, 0, 0)).sum)
+  def answer = (2 to 100).map(n => root(n, 0, 0, 0)).sum
 }
