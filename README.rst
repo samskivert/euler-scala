@@ -12,7 +12,7 @@ example::
 If you've read this far, you may also be interested in my discussion of said
 solutions here:
 
-http://samskivert.com/euler/
+http://samskivert.com/blog/
 
 Discussion seems to perpetually lag behind code by forty problems or so, but
 maybe some day I'll catch up.
