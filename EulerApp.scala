@@ -2,6 +2,18 @@ import scala.io.Source
 import java.io.File
 
 abstract class EulerApp {
+  /** A map for doing memoized calculations. */
+  abstract class MemoMap[K,V] extends collection.mutable.HashMap[K,V] {
+    override def apply (k :K) = getOrElseUpdate(k, compute(k))
+    protected def compute (k :K) :V
+  }
+
+  /** A map for doing memoized calculations with two args. */
+  abstract class MemoMap2[K1,K2,V] extends collection.mutable.HashMap[(K1,K2),V] {
+    def apply (k1 :K1, k2 :K2) = getOrElseUpdate((k1, k2), compute(k1, k2))
+    protected def compute (k1 :K1, k2 :K2) :V
+  }
+
   /** Checks the primality of `n`. Slowly. */
   def isprime (n :Int) :Boolean = {
     val limit = math.sqrt(n).toInt+1
