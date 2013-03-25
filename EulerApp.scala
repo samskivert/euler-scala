@@ -1,5 +1,5 @@
 import scala.io.Source
-import scala.collection.mutable.{BitSet => MBitSet}
+import scala.collection.mutable.{BitSet => MBitSet, ArrayBuffer}
 import java.io.File
 
 abstract class EulerApp {
@@ -63,7 +63,7 @@ abstract class EulerApp {
   }
 
   /** Generates a seq containing primes < `range`. */
-  def genprimes (range :Int) = foldprimes(range, Seq[Int]())((ps, p) => ps :+ p)
+  def genprimes (range :Int) = foldprimes(range, ArrayBuffer[Int]())(_ += _).toSeq
 
   /** Folds `f` over all primes less than `range` using zero value `z`. */
   def foldprimes[Z] (range :Int, z :Z)(f :(Z, Int) => Z) :Z = {
