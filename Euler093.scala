@@ -12,9 +12,9 @@ object Euler093 extends EulerApp {
 
   def genexprs (vals :List[Int], mkex :(Gen, Gen, Gen, Int, Int, Int, Int) => Expr) =
     for (o1 <- opgen; o2 <- opgen; o3 <- opgen; l1 <- vals;
-         val vals2 = vals filterNot l1.==; l2 <- vals2;
-         val vals3 = vals2 filterNot l2.==; l3 <- vals3;
-         val vals4 = vals3 filterNot l3.==; l4 <- vals4)
+         vals2 = vals filterNot l1.==; l2 <- vals2;
+         vals3 = vals2 filterNot l2.==; l3 <- vals3;
+         vals4 = vals3 filterNot l3.==; l4 <- vals4)
     yield mkex(o1, o2, o3, l1, l2, l3, l4)
 
   def reduce (es :Seq[Expr]) = es map(e => e.eval) filter(r => r > 0 && r.toInt == r) map(_.toInt)

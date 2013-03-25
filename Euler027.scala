@@ -7,8 +7,7 @@ object Euler027 extends EulerApp {
   val polys = for {
     a <- -1000 to 1000
     b <- -1000 to 1000
-    val p = polyprimes(primes, a, b, 0)
-    if (p > 0)
+    p = polyprimes(primes, a, b, 0) if (p > 0)
   } yield (a * b, p)
   def answer = polys.foldLeft((0, 0))((a, b) => if (a._2 > b._2) a else b)._1
 }

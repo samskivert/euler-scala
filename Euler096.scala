@@ -35,8 +35,7 @@ object Euler096 extends EulerApp {
   def explore (g :Array[Set[Int]], i :Int, v :Int) = { g(i) = g(i) - v; reduce(g) }
   def guess (g :Array[Set[Int]]) = if (isComplete(g)) g else
     (for (i <- 0 until g.length; if (g(i).size > 1); v <- g(i);
-          val ng = explore(g.clone, i, v); 
-          if (isComplete(ng))) yield ng).head
+          ng = explore(g.clone, i, v); if (isComplete(ng))) yield ng).head
 
   def toGrid (p :String) = p map(c => if (c == '0') 1 to 9 toSet else Set(c - '0')) toArray
   val puzzles = readlines("sudoku.txt") grouped(10) map(_.tail.mkString) map(toGrid)

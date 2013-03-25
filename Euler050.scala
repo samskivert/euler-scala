@@ -3,7 +3,7 @@ object Euler050 extends EulerApp {
     def add (prime :Int) = PSum(sum+prime, length+1)
   }
   val pvec = genprimevec(1000000)
-  val primes = pvec.filter(0.!=)
+  val primes = pvec.filter(_ != 0)
   def fsum (idx :Int, csum :PSum, lsum :PSum) :PSum = {
     if (idx >= primes.length || csum.sum >= pvec.length) lsum
     else fsum(idx+1, csum.add(primes(idx)), if (pvec(csum.sum) != 0) csum else lsum)

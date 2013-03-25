@@ -1,10 +1,10 @@
 object Euler060 extends EulerApp {
   val primes = genprimes(10000)
   val ppairs = Set() ++
-    (for { ii <- 0 until primes.length-1; jj <- ii until primes.length;
-          val pi = primes(ii); val pj = primes(jj);
-          if (isprime((pi.toString+pj).toInt) && isprime((pj.toString+pi).toInt))
-    } yield (pi, pj))
+  (for { ii <- 0 until primes.size-1; jj <- ii until primes.size
+         pi = primes(ii); pj = primes(jj)
+         if (isprime((pi.toString+pj).toInt) && isprime((pj.toString+pi).toInt)) }
+   yield (pi, pj))
 
   def isset (pset :List[Int], prime :Int) =
     pset.foldLeft(true)((b, a) => b && ppairs((a, prime)))

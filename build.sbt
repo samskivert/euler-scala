@@ -4,9 +4,9 @@ name := "euler-scala"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.1"
 
-scalacOptions ++= Seq("-unchecked", "-deprecation")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-optimize")
 
 unmanagedSourceDirectories in Compile <+= baseDirectory
 

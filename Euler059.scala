@@ -4,7 +4,7 @@ object Euler059 extends EulerApp {
     (0 until cipher.length) map(ii => cipher(ii) ^ key(ii%key.length))
   def answer = (for {
     a <- 'a' to 'z'; b <- 'a' to 'z'; c <- 'a' to 'z'
-    val decoded = decode(cipher, Array(a, b, c))
+    decoded = decode(cipher, Array(a, b, c))
     if (decoded.map(_.toChar).mkString.contains(" chapter"))
   } yield decoded.sum).head
 }

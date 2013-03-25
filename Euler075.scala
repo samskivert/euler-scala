@@ -4,10 +4,8 @@ object Euler075 extends EulerApp {
   for (m <- 2.to(1000); n <- 1.to(m-1)) {
     if (gcd(m, n) == 1 && (m + n) % 2 == 1) {
       val perim = 2 * m * (m + n)
-      for (k <- 1.to(Max/perim)) {
-        tris(k * perim) += 1
-      }
+      for (k <- 1.to(Max/perim)) tris(k * perim) += 1
     }
   }
-  def answer = tris.filter(1.==).length
+  def answer = tris.filter(_ == 1).length
 }
