@@ -1,4 +1,5 @@
 import scala.io.Source
+import scala.collection.mutable.{BitSet => MBitSet}
 import java.io.File
 
 abstract class EulerApp {
@@ -47,8 +48,7 @@ abstract class EulerApp {
     true
   }
 
-  /** Generates an array `[0, range)` where non-prime elements contain 0 and prime elements contain
-   * the (prime) value. */
+  /** Generates an array `[0, range)` where non-prime elements = 0 and prime elements = p. */
   def genprimevec (range :Int) :Array[Int] = {
     val primes = Array.range(0, range)
     primes(1) = 0
@@ -62,8 +62,24 @@ abstract class EulerApp {
     return primes
   }
 
-  /** Generates an array containing primes < `range`. */
-  def genprimes (range :Int) = genprimevec(range) filter(_ != 0)
+  /** Generates a seq containing primes < `range`. */
+  def genprimes (range :Int) = foldprimes(range, Seq[Int]())((ps, p) => ps :+ p)
+
+  /** Folds `f` over all primes less than `range` using zero value `z`. */
+  def foldprimes[Z] (range :Int, z :Z)(f :(Z, Int) => Z) :Z = {
+    var zacc = z
+    val nonprimes = MBitSet(range)
+    nonprimes.add(1)
+    var idx = 2
+    while (idx < range) {
+      zacc = f(zacc, idx)
+      var midx = idx+idx
+      while (midx < range) { nonprimes.add(midx); midx += idx }
+      do idx = idx+1
+      while (idx < range && nonprimes(idx))
+    }
+    zacc
+  }
 
   /** Returns the greatest common divisor of `n` and `d`. */
   def gcd (n :Int, d :Int) :Int = if (d == 0) n else gcd(d, n%d)
