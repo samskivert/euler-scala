@@ -5,16 +5,14 @@ if [ -z "$1" ]; then
     exit 255
 fi
 
-if [ ! -d classes ]; then
-    mkdir classes
-fi
+mkdir -p target/classes
 
 printf -v NUM '%03d' $1
 echo "Compiling Euler$NUM.scala..."
-scalac -deprecation -d classes EulerApp.scala Euler$NUM.scala
+scalac -deprecation -d target/classes EulerApp.scala Euler$NUM.scala
 if [ $? != 0 ]; then
     exit $?
 fi
 
 echo "Running Euler$NUM..."
-time scala -cp classes Euler$NUM
+time scala -cp target/classes Euler$NUM
