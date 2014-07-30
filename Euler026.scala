@@ -1,4 +1,4 @@
-object Euler026 extends EulerApp {
+object Euler026s extends EulerApp {
   def divcycle (numer :Int, denom :Int, rlist :List[Int]) :Int = {
     val remain = numer % denom
     if (remain == 0) return 0

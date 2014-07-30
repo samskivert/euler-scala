@@ -1,4 +1,4 @@
-object Euler034 extends EulerApp {
+object Euler034s extends EulerApp {
   val facts = Array(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
   def digfact (sum :Int, n :Int) :Int =
     if (n == 0) sum else digfact(facts(n % 10) + sum, n/10)

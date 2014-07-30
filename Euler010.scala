@@ -1,3 +1,3 @@
-object Euler010 extends EulerApp {
+object Euler010s extends EulerApp {
   def answer = genprimes(2000000).sum
 }
