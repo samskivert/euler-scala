@@ -1,14 +1,8 @@
 object Euler123 extends EulerApp {
   def answer = {
-    val M = 10000000000L
     val ps = genprimes(10000000)
-    def loop (n :Int) :Int = {
-      val p = ps(n-1) ; val p2 = p.toLong*p
-      def mpow (b :Long, exp :Long, acc :Long) :Long =
-        if (exp == 0) acc else mpow(b, exp-1, (acc * b) % p2)
-      if (p2 > M && (mpow(p-1, n, 1) + mpow(p+1, n, 1)) % p2 > M) n
-      else loop(n+2)
-    }
+    // (p-1)^n+(p+1)^n mod p^2 is 2*n*p for odd p (and 2 for even p)
+    def loop (n :Int) :Int = if (2*n*ps(n-1).toLong > 10000000000L) n else loop(n+2)
     loop(7037)
   }
 }
